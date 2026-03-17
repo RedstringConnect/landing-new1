@@ -1,11 +1,12 @@
 "use client";
+
+import React from "react";
+import { FeatureSidebar } from "./FeatureSidebar";
 interface IconProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
   className?: string;
   color?: string;
 }
-import React from "react";
-import { FeatureSidebar } from "./FeatureSidebar";
 export const CheckmarkCircleIcon: React.FC<IconProps> = ({ size = 12, className, ...props }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -55,41 +56,135 @@ const chips = [
 
 export function FeatureScreen1() {
   return (
-    <div className="w-[1035.6px] h-[647px] bg-[#0E0E10] border-[1.62px] border-[#1A1A1E] rounded-[19.44px] shrink-0 overflow-hidden relative shadow-2xl flex flex-col items-start">
-      <div className="w-full h-full bg-[#131316] flex pl-[11.5px] items-stretch overflow-hidden relative">
-        <FeatureSidebar />
-        <div className="flex-1 bg-[#0E0E10] mr-[11.5px] my-[11.5px] ml-0 p-[23px] rounded-[11.5px] flex flex-col items-start justify-center relative shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
-          
-          <div className="text-center flex w-[460px] flex-col items-center justify-start gap-1.5 whitespace-nowrap mb-6">
-            <h1 className="text-[21.6px] font-serif font-semibold text-white leading-tight tracking-tight">LoopX Forms</h1>
-            <p className="text-[10px] text-[#70707B]">What would you like to create?</p>
-          </div>
-
-          <div className="w-[480px] relative z-10 flex flex-col shadow-[0_0_34px_0_rgba(135,91,247,0.1)]">
-            <div className="bg-[#1A1A1E] border-[0.36px] border-[#26272B] rounded-[14.4px] pt-[11.5px] px-[11.5px] pb-[11.5px] w-full relative z-20 flex flex-col gap-2 -mb-[14.4px]">
-              <p className="text-white text-[11.5px] leading-[17.26px] font-medium text-left">
-                Generate a form for a Senior UX Designer with 10+ years of experience and a minimum salary expectation of ₹1,500,000 from Chennai
-              </p>
-              <div className="flex justify-end mt-1">
-                <button className="bg-[#875BF7] p-1 rounded-[5.8px] text-white flex items-center justify-center">
-                  <ArrowRightIcon size={13} />
+    <div
+      className="bg-[#0e0e10] content-stretch flex flex-[1_0_0] h-[687px] items-start p-[3.164px] relative rounded-[25.309px] shadow-[0px_9.491px_12.655px_0px_rgba(255,255,255,0),0px_3.164px_4.746px_0px_rgba(255,255,255,0),0px_1.582px_1.582px_0px_rgba(255,255,255,0)] w-full"
+      data-name="1921 Inner shadow"
+    >
+      <div
+        className="bg-[#0e0e10] border-[1.582px] border-[#1a1a1e] border-solid content-stretch flex flex-col items-start overflow-clip relative rounded-[18.982px]"
+        data-name="Mockup wrapper"
+      >
+        <div
+          className="bg-[#0e0e10] content-stretch flex isolate items-start overflow-clip p-[11.237px] relative w-[1011.345px]"
+          data-name="1440px"
+        >
+          <div
+            className="bg-[#131316] border-[0.702px] border-[#1a1a1e] border-solid content-stretch flex h-[631.581px] isolate items-start overflow-clip pl-[11.228px] relative rounded-[16px] z-[1] w-full"
+            data-name="Default"
+          >
+            <FeatureSidebar />
+            <div
+              className="bg-[#0e0e10] content-stretch flex flex-[1_0_0] flex-col gap-[14.035px] h-[622.46px] items-center justify-center min-w-px overflow-clip p-[22.456px] relative rounded-[11.228px] z-[1]"
+              data-name="Main UI"
+            >
+              <div
+                className="absolute content-stretch flex flex-col gap-[4.211px] items-center justify-center left-[193.84px] top-[197.68px] whitespace-nowrap"
+                data-node-id="7620:183389"
+              >
+                <p
+                  className="font-[540] font-denton leading-[26.667px] relative shrink-0 text-white text-[21.053px]"
+                  style={{ fontVariationSettings: "'wdth' 100" }}
+                >
+                  LoopX Forms
+                </p>
+                <p
+                  className="font-normal font-sans leading-[14.035px] relative shrink-0 text-[#70707b] text-[9.825px] text-center"
+                  style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                >
+                  What would you like to create?
+                </p>
+              </div>
+              <div
+                className="absolute content-stretch flex flex-col gap-[22.456px] items-center justify-center left-[186.82px] max-w-[449.124px] top-[267.18px] w-[449.124px]"
+                data-node-id="7620:183395"
+              >
+                <div
+                  className="content-stretch flex flex-col isolate items-center justify-center max-w-[449.124px] pb-[14.035px] relative shadow-[0px_0px_32.983px_0px_rgba(135,91,247,0.1)] shrink-0 w-[449.124px]"
+                  data-name="Form Search AI"
+                  data-node-id="7620:183396"
+                >
+                  <div
+                    className="bg-[#1a1a1e] border-[0.351px] border-[#26272b] border-solid content-stretch flex flex-col gap-[8.421px] items-end justify-end max-w-full mb-[-14.035px] overflow-clip p-[11.228px] relative rounded-[14.035px] shrink-0 w-[449.124px] z-[2]"
+                    data-name="Search/Active"
+                    data-node-id="7620:183397"
+                  >
+                    <div
+                      className="content-stretch flex h-[33.684px] items-start justify-center relative shrink-0 w-[426.668px]"
+                      data-node-id="7620:183398"
+                    >
+                      <div
+                        className="content-stretch flex flex-[1_0_0] items-center min-w-px relative"
+                        data-node-id="7620:183399"
+                      >
+                        <p
+                          className="flex-[1_0_0] font-sans font-[500] leading-[16.842px] min-w-px relative text-white text-[11.23px]"
+                          style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                        >
+                          Generate a form for a Senior UX Designer with 10+ years of experience and a minimum salary expectation of ₹1,500,000 from Chennai
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      className="content-stretch flex items-center justify-end relative shrink-0 w-[426.668px]"
+                      data-node-id="7620:183401"
+                    >
+                      <div
+                        className="content-stretch flex items-start justify-end relative shrink-0"
+                        data-node-id="7620:183402"
+                      >
+                        <div
+                          className="bg-[#875bf7] content-stretch flex items-center justify-center overflow-clip p-[4.211px] relative rounded-[5.614px] shrink-0 cursor-pointer"
+                          data-node-id="7620:183403"
+                        >
+                          <ArrowRightIcon size={12.632} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="backdrop-blur-[28.07px] bg-[rgba(26,26,30,0.4)] border-[0.351px] border-[#26272b] border-solid content-stretch flex flex-col items-start mb-[-14.035px] pb-[11.228px] pt-[25.263px] px-[11.228px] relative rounded-bl-[11.228px] rounded-br-[11.228px] shrink-0 w-full z-[1]"
+                    data-name="Filters"
+                    data-node-id="7620:183406"
+                  >
+                    <div
+                      className="content-stretch flex gap-[8.421px] items-center justify-center relative shrink-0 w-full flex-wrap"
+                      data-node-id="7620:183407"
+                    >
+                      {chips.map((chip, i) => (
+                        <div
+                          key={i}
+                          className={`content-stretch flex gap-[2.807px] items-center pl-[4.211px] pr-[5.614px] py-[1.404px] relative rounded-[5.614px] shrink-0 border-[0.351px] ${
+                            chip.done ? "bg-[#172820] border-[#315f45]" : "border-[#26272b]"
+                          }`}
+                        >
+                          <CheckmarkCircleIcon size={11.228} className={chip.done ? "text-[#caf7da]" : "text-white"} />
+                          <p
+                            className={`font-sans font-[500] leading-[14.035px] relative shrink-0 text-[9.82px] text-center whitespace-nowrap ${
+                              chip.done ? "text-[#caf7da]" : "text-white"
+                            }`}
+                            style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                          >
+                            {chip.label}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <button
+                  className="bg-[#1a1a1e] border-[0.351px] border-[#26272b] border-solid content-stretch cursor-pointer flex gap-[2.807px] items-center justify-center overflow-clip px-[9.825px] py-[7.018px] relative rounded-[8.421px] shrink-0"
+                  data-node-id="7620:183418"
+                >
+                  <p
+                    className="font-sans font-[600] leading-[14.035px] relative shrink-0 text-[#a48afb] text-[9.82px] whitespace-nowrap"
+                    style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                  >
+                    Start from scratch
+                  </p>
                 </button>
               </div>
             </div>
-            
-            <div className="bg-[#1A1A1E]/40 border-[0.36px] border-[#26272B] rounded-b-[11.5px] w-full px-[11.5px] pt-[25.9px] pb-[11.5px] relative z-10 flex justify-center items-center gap-[8.6px]">
-               {chips.map((chip, i) => (
-                 <div key={i} className={`flex items-center gap-[1.5px] px-[5.75px] py-[1.5px] rounded-[4.3px] border-[0.36px] text-[8.6px] whitespace-nowrap font-medium ${chip.done ? 'bg-[#172820] border-[#315F45] text-[#CAF7DA]' : 'border-[#26272B] text-white'}`}>
-                    <CheckmarkCircleIcon size={8.6} className={chip.done ? 'text-[#CAF7DA]' : 'text-white'} />
-                    <span>{chip.label}</span>
-                 </div>
-               ))}
-            </div>
-          <button className="mt-[23px] w-fit mx-auto bg-[#1A1A1E] border-[0.36px] border-[#26272B] px-[10px] py-[7px] rounded-[8.6px] text-[#A48AFB] text-[10px] font-semibold relative z-10 hover:bg-[#26272B] transition-colors shadow-sm">
-            Start from scratch
-          </button>
           </div>
-
         </div>
       </div>
     </div>

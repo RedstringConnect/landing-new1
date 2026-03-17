@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { Share2 } from "lucide-react";
 import {
   AllWorkspacesIcon,
   WorkspaceIcon,
@@ -16,107 +15,276 @@ import {
 
 export function FeatureSidebar() {
   return (
-    <div className="w-[158px] flex flex-col justify-between py-[11px] pr-[11.5px] h-[647px] shrink-0">
-      <div className="flex flex-col gap-[14.5px] flex-1">
-        {/* Navigation / Header */}
-        <div className="flex items-center justify-between pl-2 pt-1">
-          <div className="text-white text-[17px] flex items-center gap-[1px]"
-          >
-            <span className="font-serif">LoopX</span>
-          </div>
-          <button className="bg-[#1A1A1E] border border-[#26272B] p-1 rounded-md flex items-center justify-center">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-white">
-              <path d="M19 12H5M12 19l-7-7 7-7"/>
-            </svg>
-          </button>
-        </div>
-
-        {/* Projects header */}
-        <div className="flex flex-col gap-[14px]">
-          <div className="flex flex-col">
-            <div className="px-2 pb-1">
-              <span className="text-[#70707B] text-[10px] font-medium leading-[14px]">Projects</span>
-            </div>
-            
-            <div className="flex flex-col gap-0.5">
-              <div className="bg-[#875BF7] text-white rounded-[7.2px] py-1.5 px-2 flex items-center justify-center gap-[3px] cursor-pointer">
-                <span className="text-[10px] font-semibold">Create new form</span>
-                <PlusIcon size={11.5} className="shrink-0" />
-              </div>
-
-              <div className="flex items-center gap-2 py-1.5 px-2 text-[#A0A0AB] hover:text-white transition-colors cursor-pointer rounded-[10px]">
-                <AllWorkspacesIcon size={13} className="shrink-0" />
-                <span className="text-[10px] font-medium flex-1 truncate">Workspaces</span>
-                <button className="p-1 rounded-[6px] bg-[#1A1A1E] border border-[#26272B] flex items-center justify-center">
-                  <PlusIcon size={10} className="text-white shrink-0" />
+    <div className="content-stretch flex h-[631.581px] items-start max-w-[165.61px] pl-[0px] pr-[11.228px] py-[11.228px] relative shrink-0 w-[154.387px] z-[2]">
+      <div className="bg-[#131316] content-stretch flex flex-[1_0_0] flex-col h-full items-center justify-between min-h-px min-w-px relative rounded-[8.421px] shadow-[0px_0.702px_1.404px_0px_rgba(10,13,18,0.05)]">
+        <div className="content-stretch flex flex-[1_0_0] flex-col isolate items-center justify-between min-h-px min-w-px relative w-full">
+          <div className="content-stretch flex flex-col gap-[14.035px] items-start relative shrink-0 w-full z-[2]">
+            <div className="content-stretch flex flex-col gap-[0px] isolate items-center justify-center pt-[0px] relative shrink-0 w-full">
+              <div className="content-stretch flex items-center justify-between pl-[8.421px] pr-[0px] relative shrink-0 w-full z-[1]">
+                <div className="content-stretch flex font-[600] font-denton gap-[1.404px] items-center leading-[22.456px] relative shrink-0 text-[16.84px] text-white whitespace-nowrap">
+                  <p className="relative shrink-0">L</p>
+                  <p className="relative shrink-0">oo</p>
+                  <p className="relative shrink-0">pX</p>
+                </div>
+                <button className="bg-[#1a1a1e] border-[0.351px] border-[#26272b] border-solid content-stretch cursor-pointer flex items-center justify-center overflow-clip p-[4.211px] relative rounded-[5.614px] shrink-0">
+                  <div className="overflow-clip relative shrink-0 size-[12.632px] flex items-center justify-center">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" className="text-white shrink-0">
+                      <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
                 </button>
               </div>
-
-              <div className="flex items-center gap-2 py-1.5 px-2 border border-[#1A1A1E] rounded-[10px] cursor-pointer">
-                <WorkspaceIcon size={13} className="text-[#A48AFB] shrink-0" />
-                <span className="text-[10px] font-medium text-[#A48AFB] flex-1 truncate">UX intern</span>
-                <ChevronDownIcon size={11} className="text-[#70707B] shrink-0" />
+            </div>
+            <div className="content-stretch flex flex-col gap-[14.035px] isolate items-start relative shrink-0 w-full">
+              <div className="content-stretch flex flex-col isolate items-start relative shrink-0 w-full z-[2]">
+                <button className="content-stretch cursor-pointer flex h-[16.842px] items-center pb-[2.807px] px-[8.421px] relative shrink-0 w-full z-[2]">
+                  <p
+                    className="font-sans font-[500] leading-[14.035px] relative shrink-0 text-[#70707b] text-[9.82px] text-left whitespace-nowrap"
+                    style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                  >
+                    Projects
+                  </p>
+                  <div className="content-stretch flex items-center opacity-0 pt-[1.404px] relative shrink-0">
+                    <div className="overflow-clip relative shrink-0 size-[9.825px]">
+                      <ChevronDownIcon size={9.825} />
+                    </div>
+                  </div>
+                </button>
+                <div className="content-stretch flex flex-col isolate items-start px-[0px] relative shrink-0 w-full z-[1]">
+                  <div className="content-stretch flex items-center overflow-clip pb-[0px] pt-[1.404px] relative shrink-0 w-full z-[5]">
+                    <div className="content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px pb-[0px] pt-[5.614px] px-[0px] relative rounded-[10px]">
+                      <div className="bg-[#875bf7] content-stretch flex flex-[1_0_0] gap-[2.807px] items-center justify-center min-h-px min-w-px overflow-clip px-[8.421px] py-[5.614px] relative rounded-[7.018px] cursor-pointer">
+                        <div className="content-stretch flex items-center justify-center px-[1.404px] relative shrink-0">
+                          <p
+                            className="font-sans font-[600] leading-[14.035px] relative shrink-0 text-white text-[9.82px] whitespace-nowrap"
+                            style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                          >
+                            Create new form
+                          </p>
+                        </div>
+                        <div className="overflow-clip relative shrink-0 size-[11.228px] text-white flex items-center justify-center">
+                          <PlusIcon size={11.228} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="h-[22.456px] relative shrink-0 w-full z-[4] flex items-center">
+                    <div className="w-full border-t-[0.702px] border-[#26272b] absolute" />
+                  </div>
+                  <div className="content-stretch flex gap-[2.807px] items-center relative shrink-0 w-full z-[3]">
+                    <div className="content-stretch flex flex-[1_0_0] h-[28.07px] items-center min-h-px min-w-px overflow-clip py-[1.404px] relative">
+                      <div className="content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px px-[8.421px] py-[5.614px] relative rounded-[10px] cursor-pointer hover:bg-[#1a1a1e] group text-[#a0a0ab] hover:text-white transition-colors">
+                        <div className="content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px relative">
+                          <div className="overflow-clip relative shrink-0 size-[12.632px] flex items-center justify-center">
+                            <AllWorkspacesIcon size={12.632} />
+                          </div>
+                          <p
+                            className="flex-[1_0_0] font-sans font-[500] leading-[14.035px] min-h-px min-w-px overflow-hidden relative text-[9.82px] text-ellipsis whitespace-nowrap"
+                            style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                          >
+                            Workspaces
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="content-stretch flex gap-[5.614px] items-center relative shrink-0">
+                      <div className="bg-[#1a1a1e] border-[0.351px] border-[#26272b] border-solid content-stretch flex items-center justify-center overflow-clip p-[4.211px] relative rounded-[5.614px] shrink-0 cursor-pointer">
+                        <div className="overflow-clip relative shrink-0 size-[12.632px] text-white flex items-center justify-center">
+                          <PlusIcon size={12.632} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="content-stretch flex flex-col items-start relative shrink-0 w-full z-[2]">
+                    <div className="content-stretch flex items-center overflow-clip py-[1.404px] relative shrink-0 w-full">
+                      <button className="border-[0.702px] border-[#1a1a1e] border-solid bg-transparent content-stretch cursor-pointer flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px px-[8.421px] py-[5.614px] relative rounded-[10px]">
+                        <div className="content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px relative">
+                          <div className="overflow-clip relative shrink-0 size-[12.632px] text-[#a48afb] flex items-center justify-center">
+                            <WorkspaceIcon size={12.632} />
+                          </div>
+                          <p
+                            className="flex-[1_0_0] font-sans font-[500] leading-[14.035px] min-h-px min-w-px overflow-hidden relative text-[9.82px] text-[#a48afb] text-ellipsis text-left whitespace-nowrap"
+                            style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                          >
+                            UX intern
+                          </p>
+                        </div>
+                        <div className="overflow-clip relative shrink-0 size-[11.228px] text-[#70707B] flex items-center justify-center">
+                          <ChevronDownIcon size={11.228} />
+                        </div>
+                      </button>
+                    </div>
+                    <div className="content-stretch flex flex-col items-start pb-[2.807px] relative shrink-0 w-full">
+                      <div className="content-stretch flex items-center overflow-clip py-[1.404px] relative shrink-0 w-full">
+                        <div className="content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px pl-[28.07px] pr-[8.421px] py-[5.614px] relative rounded-[10px]">
+                          <div className="content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px relative">
+                            <p
+                              className="flex-[1_0_0] font-sans font-[500] leading-[14.035px] min-h-px min-w-px overflow-hidden relative text-[9.82px] text-[#a0a0ab] text-ellipsis whitespace-nowrap"
+                              style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                            >
+                              Consultant in London with 2+ years experience at top consulting firms
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="content-stretch flex items-center overflow-clip py-[1.404px] relative shrink-0 w-full">
+                        <div className="bg-[#0e0e10] content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px pl-[28.07px] pr-[8.421px] py-[5.614px] relative rounded-[10px]">
+                          <div className="content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px relative">
+                            <p
+                              className="flex-[1_0_0] font-sans font-[500] leading-[14.035px] min-h-px min-w-px overflow-hidden relative text-[9.82px] text-white text-ellipsis whitespace-nowrap"
+                              style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                            >
+                              Marketing Manager in Europe, German-speaking, working at a large enterprise
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="content-stretch flex items-center overflow-clip py-[1.404px] relative shrink-0 w-full">
+                        <div className="content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px pl-[28.07px] pr-[8.421px] py-[5.614px] relative rounded-[10px]">
+                          <div className="content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px relative">
+                            <p
+                              className="flex-[1_0_0] font-sans font-[500] leading-[14.035px] min-h-px min-w-px overflow-hidden relative text-[9.82px] text-[#a0a0ab] text-ellipsis whitespace-nowrap"
+                              style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                            >
+                              +1
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="h-[11.228px] relative shrink-0 w-full z-[1] flex items-center">
+                    <div className="w-full border-t-[0.702px] border-[#26272b] absolute" />
+                  </div>
+                </div>
               </div>
-
-              {/* Sub-items */}
-              <div className="flex flex-col pl-[28px] pr-2 gap-0.5 mt-0.5">
-                <div className="py-1 rounded-[10px]">
-                  <span className="text-[10px] font-medium text-[#A0A0AB] truncate block">Consultant in London...</span>
-                </div>
-                <div className="bg-[#0E0E10] py-1 px-2 rounded-[10px] -ml-2 w-[calc(100%+8px)]">
-                  <span className="text-[10px] font-medium text-white truncate block">Marketing Manager...</span>
-                </div>
-                <div className="py-1 rounded-[10px]">
-                  <span className="text-[10px] font-medium text-[#A0A0AB] truncate block">+1</span>
+              <div className="content-stretch flex flex-col items-start relative shrink-0 w-full z-[1]">
+                <button className="content-stretch cursor-pointer flex h-[16.842px] items-center pb-[2.807px] px-[8.421px] relative shrink-0 w-full">
+                  <p
+                    className="font-sans font-[500] leading-[14.035px] relative shrink-0 text-[#70707b] text-[9.82px] text-left whitespace-nowrap"
+                    style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                  >
+                    General
+                  </p>
+                </button>
+                <div className="content-stretch flex flex-col items-start relative shrink-0 w-full">
+                  <button className="content-stretch cursor-pointer flex items-start relative shrink-0 w-full group">
+                    <div className="content-stretch flex flex-[1_0_0] h-[28.07px] items-center min-h-px min-w-px overflow-clip py-[1.404px] relative text-[#a0a0ab] group-hover:text-white transition-colors">
+                      <div className="content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px px-[8.421px] py-[5.614px] relative rounded-[10px]">
+                        <div className="content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px relative">
+                          <div className="overflow-clip relative shrink-0 size-[12.632px] flex items-center justify-center">
+                            <ShortlistNavIcon size={12.632} />
+                          </div>
+                          <p
+                            className="flex-[1_0_0] font-sans font-[500] leading-[14.035px] min-h-px min-w-px overflow-hidden relative text-[9.82px] text-ellipsis text-left whitespace-nowrap"
+                            style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                          >
+                            Shortlist
+                          </p>
+                        </div>
+                        <div className="bg-[#172820] border-[0.351px] border-[#315f45] border-solid content-stretch flex items-center px-[4.211px] py-[1.404px] relative rounded-[5.614px] shrink-0">
+                          <p
+                            className="font-sans font-[500] leading-[12.632px] relative shrink-0 text-[#caf7da] text-[8.42px] text-center whitespace-nowrap"
+                            style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                          >
+                            10
+                          </p>
+                        </div>
+                        <div className="overflow-clip relative shrink-0 size-[11.228px] flex items-center justify-center">
+                          <ChevronDownIcon size={11.228} />
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                  <div className="content-stretch flex flex-col items-start px-[0px] relative shrink-0 w-full">
+                    <div className="content-stretch flex h-[28.07px] items-center overflow-clip py-[1.404px] relative shrink-0 w-full">
+                      <div className="content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px px-[8.421px] py-[5.614px] relative rounded-[10px] cursor-pointer text-[#a0a0ab] hover:text-white transition-colors group">
+                        <div className="content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px relative">
+                          <div className="overflow-clip relative shrink-0 size-[12.632px] flex items-center justify-center">
+                            <MessagingIcon size={12.632} />
+                          </div>
+                          <p
+                            className="flex-[1_0_0] font-sans font-[500] leading-[14.035px] min-h-px min-w-px overflow-hidden relative text-[9.82px] text-ellipsis whitespace-nowrap"
+                            style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                          >
+                            Messages
+                          </p>
+                        </div>
+                        <div className="bg-[#172820] border-[0.351px] border-[#315f45] border-solid content-stretch flex items-center px-[4.211px] py-[1.404px] relative rounded-[5.614px] shrink-0">
+                          <p
+                            className="font-sans font-[500] leading-[12.632px] relative shrink-0 text-[#caf7da] text-[8.42px] text-center whitespace-nowrap"
+                            style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                          >
+                            10
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="content-stretch flex flex-col items-start px-[0px] relative shrink-0 w-full">
+                      <div className="content-stretch flex items-center overflow-clip py-[1.404px] relative shrink-0 w-full">
+                        <div className="content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px px-[8.421px] py-[5.614px] relative rounded-[10px] cursor-pointer text-[#a0a0ab] hover:text-white transition-colors group">
+                          <div className="content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px relative">
+                            <div className="overflow-clip relative shrink-0 size-[12.632px] flex items-center justify-center">
+                              <EmailAutomationIcon size={12.632} />
+                            </div>
+                            <p
+                              className="flex-[1_0_0] font-sans font-[500] leading-[14.035px] min-h-px min-w-px overflow-hidden relative text-[9.82px] text-ellipsis whitespace-nowrap"
+                              style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                            >
+                              Email Automation
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          
-          <div className="w-full h-[1px] bg-[#26272B]" />
-
-          {/* General header */}
-          <div className="flex flex-col">
-            <div className="px-2 pb-1">
-              <span className="text-[#70707B] text-[10px] font-medium leading-[14px]">General</span>
+          <div className="content-stretch flex flex-col items-start relative shrink-0 w-full z-[1]">
+            <div className="content-stretch flex flex-col items-start px-[0px] relative shrink-0 w-full">
+              <div className="content-stretch flex h-[28.07px] items-center overflow-clip py-[1.404px] relative shrink-0 w-full">
+                <div className="content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px px-[8.421px] py-[5.614px] relative rounded-[10px] cursor-pointer text-[#a0a0ab] hover:text-white transition-colors group">
+                  <div className="content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px relative">
+                    <div className="overflow-clip relative shrink-0 size-[12.632px] flex items-center justify-center">
+                      <CompanyProfileIcon size={12.632} />
+                    </div>
+                    <p
+                      className="flex-[1_0_0] font-sans font-[500] leading-[14.035px] min-h-px min-w-px overflow-hidden relative text-[9.82px] text-ellipsis whitespace-nowrap"
+                      style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                    >
+                      Company Profile
+                    </p>
+                  </div>
+                  <div className="overflow-clip relative shrink-0 size-[11.228px] text-[#A0A0AB] flex items-center justify-center group-hover:text-white">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M4 12V20C4 20.5523 4.44772 21 5 21H19C19.5523 21 20 20.5523 20 20V12" />
+                      <path d="M16 6L12 2L8 6" />
+                      <path d="M12 2V15" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="flex flex-col gap-0.5">
-              <div className="flex items-center gap-2 py-1.5 px-2 text-[#A0A0AB] hover:text-white cursor-pointer rounded-[10px]">
-                <ShortlistNavIcon size={13} className="shrink-0" />
-                <span className="text-[10px] font-medium flex-1 truncate">Shortlist</span>
-                <div className="bg-[#172820] border border-[#315F45] text-[#CAF7DA] text-[8.6px] font-medium px-1.5 py-[1px] rounded-[6px]">
-                  10
+            <div className="content-stretch flex flex-col items-start px-[0px] relative shrink-0 w-full">
+              <div className="content-stretch flex items-center overflow-clip py-[1.404px] relative shrink-0 w-full">
+                <div className="content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px px-[8.421px] py-[5.614px] relative rounded-[10px] cursor-pointer text-[#a0a0ab] hover:text-white transition-colors group">
+                  <div className="content-stretch flex flex-[1_0_0] gap-[8.421px] items-center min-h-px min-w-px relative">
+                    <div className="overflow-clip relative shrink-0 size-[12.632px] flex items-center justify-center">
+                      <SettingsIcon size={12.632} />
+                    </div>
+                    <p
+                      className="flex-[1_0_0] font-sans font-[500] leading-[14.035px] min-h-px min-w-px overflow-hidden relative text-[9.82px] text-ellipsis whitespace-nowrap"
+                      style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                    >
+                      Settings
+                    </p>
+                  </div>
                 </div>
-                <ChevronDownIcon size={11.5} className="shrink-0" />
-              </div>
-
-              <div className="flex items-center gap-2 py-1.5 px-2 text-[#A0A0AB] hover:text-white cursor-pointer rounded-[10px]">
-                <MessagingIcon size={13} className="shrink-0" />
-                <span className="text-[10px] font-medium flex-1 truncate">Messages</span>
-                <div className="bg-[#172820] border border-[#315F45] text-[#CAF7DA] text-[8.6px] font-medium px-1.5 py-[1px] rounded-[6px]">
-                  10
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2 py-1.5 px-2 text-[#A0A0AB] hover:text-white cursor-pointer rounded-[10px]">
-                <EmailAutomationIcon size={13} className="shrink-0" />
-                <span className="text-[10px] font-medium truncate">Email Automation</span>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Bottom Profile Settings */}
-      <div className="flex flex-col pt-3 border-t border-[#26272B]">
-        <div className="flex items-center gap-2 py-1.5 px-2 text-[#A0A0AB] hover:text-white cursor-pointer rounded-[10px]">
-          <CompanyProfileIcon size={13} className="shrink-0" />
-          <span className="text-[10px] font-medium flex-1 truncate">Company Profile</span>
-          <Share2 size={11.5} className="shrink-0" />
-        </div>
-        <div className="flex items-center gap-2 py-1.5 px-2 text-[#A0A0AB] hover:text-white cursor-pointer rounded-[10px]">
-          <SettingsIcon size={13} className="shrink-0" />
-          <span className="text-[10px] font-medium truncate">Settings</span>
         </div>
       </div>
     </div>
