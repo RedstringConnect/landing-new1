@@ -57,24 +57,24 @@ const chips = [
 export function FeatureScreen1() {
   return (
     <div
-      className="bg-[#0e0e10] content-stretch flex flex-[1_0_0] h-[687px] items-start p-[3.164px] relative rounded-[25.309px] shadow-[0px_9.491px_12.655px_0px_rgba(255,255,255,0),0px_3.164px_4.746px_0px_rgba(255,255,255,0),0px_1.582px_1.582px_0px_rgba(255,255,255,0)] w-full"
+      className="dark bg-background content-stretch flex flex-[1_0_0] h-[687px] items-start p-[3.164px] relative rounded-[25.309px] shadow-[0px_9.491px_12.655px_0px_rgba(255,255,255,0),0px_3.164px_4.746px_0px_rgba(255,255,255,0),0px_1.582px_1.582px_0px_rgba(255,255,255,0)] w-full"
       data-name="1921 Inner shadow"
     >
       <div
-        className="bg-[#0e0e10] border-[1.582px] border-[#1a1a1e] border-solid content-stretch flex flex-col items-start overflow-clip relative rounded-[18.982px]"
+        className="bg-background border-[1.582px] border-border border-solid content-stretch flex flex-col items-start overflow-clip relative rounded-[18.982px]"
         data-name="Mockup wrapper"
       >
         <div
-          className="bg-[#0e0e10] content-stretch flex isolate items-start overflow-clip p-[11.237px] relative w-[1011.345px]"
+          className="bg-background content-stretch flex isolate items-start overflow-clip p-[11.237px] relative w-[1011.345px]"
           data-name="1440px"
         >
           <div
-            className="bg-[#131316] border-[0.702px] border-[#1a1a1e] border-solid content-stretch flex h-[631.581px] isolate items-start overflow-clip pl-[11.228px] relative rounded-[16px] z-[1] w-full"
+            className="bg-card border-[0.702px] border-border border-solid content-stretch flex h-[631.581px] isolate items-start overflow-clip pl-[11.228px] relative rounded-[16px] z-[1] w-full"
             data-name="Default"
           >
             <FeatureSidebar />
             <div
-              className="bg-[#0e0e10] content-stretch flex flex-[1_0_0] flex-col gap-[14.035px] h-[622.46px] items-center justify-center min-w-px overflow-clip p-[22.456px] relative rounded-[11.228px] z-[1]"
+              className="bg-background content-stretch flex flex-[1_0_0] flex-col gap-[14.035px] h-[622.46px] items-center justify-center min-w-px overflow-clip p-[22.456px] relative rounded-[11.228px] z-[1]"
               data-name="Main UI"
             >
               <div
@@ -82,13 +82,13 @@ export function FeatureScreen1() {
                 data-node-id="7620:183389"
               >
                 <p
-                  className="font-[540] font-denton leading-[26.667px] relative shrink-0 text-white text-[21.053px]"
+                  className="font-[540] font-denton leading-[26.667px] relative shrink-0 text-foreground text-[21.053px]"
                   style={{ fontVariationSettings: "'wdth' 100" }}
                 >
                   LoopX Forms
                 </p>
                 <p
-                  className="font-normal font-sans leading-[14.035px] relative shrink-0 text-[#70707b] text-[9.825px] text-center"
+                  className="font-normal font-sans leading-[14.035px] relative shrink-0 text-muted-foreground text-[9.825px] text-center"
                   style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
                 >
                   What would you like to create?
@@ -104,7 +104,7 @@ export function FeatureScreen1() {
                   data-node-id="7620:183396"
                 >
                   <div
-                    className="bg-[#1a1a1e] border-[0.351px] border-[#26272b] border-solid content-stretch flex flex-col gap-[8.421px] items-end justify-end max-w-full mb-[-14.035px] overflow-clip p-[11.228px] relative rounded-[14.035px] shrink-0 w-[449.124px] z-[2]"
+                    className="bg-secondary border-[0.351px] border-border border-solid content-stretch flex flex-col gap-[8.421px] items-end justify-end max-w-full mb-[-14.035px] overflow-clip p-[11.228px] relative rounded-[14.035px] shrink-0 w-[449.124px] z-[2]"
                     data-name="Search/Active"
                     data-node-id="7620:183397"
                   >
@@ -117,7 +117,7 @@ export function FeatureScreen1() {
                         data-node-id="7620:183399"
                       >
                         <p
-                          className="flex-[1_0_0] font-sans font-[500] leading-[16.842px] min-w-px relative text-white text-[11.23px]"
+                          className="flex-[1_0_0] font-sans font-[500] leading-[16.842px] min-w-px relative text-foreground text-[11.23px]"
                           style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
                         >
                           Generate a form for a Senior UX Designer with 10+ years of experience and a minimum salary expectation of ₹1,500,000 from Chennai
@@ -142,7 +142,7 @@ export function FeatureScreen1() {
                     </div>
                   </div>
                   <div
-                    className="backdrop-blur-[28.07px] bg-[rgba(26,26,30,0.4)] border-[0.351px] border-[#26272b] border-solid content-stretch flex flex-col items-start mb-[-14.035px] pb-[11.228px] pt-[25.263px] px-[11.228px] relative rounded-bl-[11.228px] rounded-br-[11.228px] shrink-0 w-full z-[1]"
+                    className="backdrop-blur-[28.07px] bg-[rgba(26,26,30,0.4)] border-[0.351px] border-border border-solid content-stretch flex flex-col items-start mb-[-14.035px] pb-[11.228px] pt-[25.263px] px-[11.228px] relative rounded-bl-[11.228px] rounded-br-[11.228px] shrink-0 w-full z-[1]"
                     data-name="Filters"
                     data-node-id="7620:183406"
                   >
@@ -154,13 +154,13 @@ export function FeatureScreen1() {
                         <div
                           key={i}
                           className={`content-stretch flex gap-[2.807px] items-center pl-[4.211px] pr-[5.614px] py-[1.404px] relative rounded-[5.614px] shrink-0 border-[0.351px] ${
-                            chip.done ? "bg-[#172820] border-[#315f45]" : "border-[#26272b]"
+                            chip.done ? "bg-[#172820] border-[#315f45]" : "border-border"
                           }`}
                         >
-                          <CheckmarkCircleIcon size={11.228} className={chip.done ? "text-[#caf7da]" : "text-white"} />
+                          <CheckmarkCircleIcon size={11.228} className={chip.done ? "text-[#caf7da]" : "text-foreground"} />
                           <p
                             className={`font-sans font-[500] leading-[14.035px] relative shrink-0 text-[9.82px] text-center whitespace-nowrap ${
-                              chip.done ? "text-[#caf7da]" : "text-white"
+                              chip.done ? "text-[#caf7da]" : "text-foreground"
                             }`}
                             style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
                           >
@@ -172,11 +172,11 @@ export function FeatureScreen1() {
                   </div>
                 </div>
                 <button
-                  className="bg-[#1a1a1e] border-[0.351px] border-[#26272b] border-solid content-stretch cursor-pointer flex gap-[2.807px] items-center justify-center overflow-clip px-[9.825px] py-[7.018px] relative rounded-[8.421px] shrink-0"
+                  className="bg-secondary border-[0.351px] border-border border-solid content-stretch cursor-pointer flex gap-[2.807px] items-center justify-center overflow-clip px-[9.825px] py-[7.018px] relative rounded-[8.421px] shrink-0"
                   data-node-id="7620:183418"
                 >
                   <p
-                    className="font-sans font-[600] leading-[14.035px] relative shrink-0 text-[#a48afb] text-[9.82px] whitespace-nowrap"
+                    className="font-sans font-[600] leading-[14.035px] relative shrink-0 text-[#875bf7] text-[9.82px] whitespace-nowrap"
                     style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
                   >
                     Start from scratch

@@ -11,7 +11,7 @@ export const Mockup = () => {
         }}
       />
       <div
-        className="bg-[#0e0e10] border-[0.791px] border-[#22262f] border-solid content-stretch flex h-[687px] items-start p-[3.164px] relative rounded-[25.309px] shadow-[0px_9.491px_12.655px_0px_rgba(255,255,255,0),0px_3.164px_4.746px_0px_rgba(255,255,255,0),0px_1.582px_1.582px_0px_rgba(255,255,255,0)] shrink-0 w-[1039.81px] z-[1]"
+        className="bg-background border-[0.791px] border-[#22262f] border-solid content-stretch flex h-[687px] items-start p-[3.164px] relative rounded-[25.309px] shadow-[0px_9.491px_12.655px_0px_rgba(255,255,255,0),0px_3.164px_4.746px_0px_rgba(255,255,255,0),0px_1.582px_1.582px_0px_rgba(255,255,255,0)] shrink-0 w-[1039.81px] z-[1]"
         data-name="Mockup wrapper"
       >
          <FeatureScreen1 />
