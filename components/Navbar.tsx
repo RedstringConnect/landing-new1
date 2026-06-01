@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Moon, Sun, Map as MapIcon } from "lucide-react";
 import Link from "next/link";
+import Logo from "@/components/logo";
 import { motion, AnimatePresence, Variants } from "motion/react";
 import {
   NavigationMenu,
@@ -76,7 +77,9 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
       >
         <div className="flex items-center justify-between mb-6">
           <Link href="/">
-            <motion.img layoutId="nav-logo" transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }} src="/logo.svg" alt="Redstring Logo" className="h-[28px] w-auto" />
+            <motion.div layoutId="nav-logo" transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }} className="flex items-center">
+              <Logo className="h-[28px] w-auto text-foreground" />
+            </motion.div>
           </Link>
           <div className="flex items-center gap-3">
             {mounted && (
@@ -172,7 +175,9 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
       <div className="flex items-center justify-between px-6 lg:px-8 h-[72px]">
         <div className="flex items-center">
           <Link href="/">
-            <motion.img layoutId="nav-logo" transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }} src="/logo.svg" alt="Redstring Logo" className="h-[28px] w-auto" />
+            <motion.div layoutId="nav-logo" transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }} className="flex items-center">
+              <Logo className="h-[28px] w-auto text-foreground" />
+            </motion.div>
           </Link>
         </div>
 
