@@ -76,7 +76,7 @@ export const DotFlow = ({ items }: DotFlowProps) => {
                 className="gap-px"
                 repeatCount={items[index].repeatCount ?? 1}
                 duration={items[index].duration ?? 150}
-                dotClassName="bg-primary-foreground/30 [&.active]:bg-primary-foreground size-1"
+                dotClassName="bg-primary-foreground/30 [&.active]:bg-primary-foreground size-[3px]"
             />
             <div ref={containerRef} className="relative overflow-hidden" style={{ width: 'auto', minWidth: '120px' }}>
                 <div 

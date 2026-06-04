@@ -82,7 +82,7 @@ export function FAQ() {
         We&apos;ve Got the Answers You&apos;re Looking For
       </h2>
 
-      <div className="max-w-[988px] mx-auto px-6 lg:px-8 w-full bg-card border border-border rounded-2xl p-6 md:p-8">
+      <div className="max-w-[988px] mx-auto px-6 lg:px-8 w-full bg-card border border-border rounded-2xl">
         {faqs.map((faq, i) => (
           <FAQItem key={i} {...faq} />
         ))}

@@ -179,7 +179,7 @@ export function FeatureSidebar() {
                             className="flex-[1_0_0] font-sans font-[500] leading-[14.035px] min-h-px min-w-px overflow-hidden relative text-[9.82px] text-ellipsis text-left whitespace-nowrap"
                             style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
                           >
-                            Shortlist
+                            Hiring Pipeline
                           </p>
                         </div>
                         <div className="bg-[#172820] border-[0.351px] border-[#315f45] border-solid content-stretch flex items-center px-[4.211px] py-[1.404px] relative rounded-[5.614px] shrink-0">
@@ -207,7 +207,7 @@ export function FeatureSidebar() {
                             className="flex-[1_0_0] font-sans font-[500] leading-[14.035px] min-h-px min-w-px overflow-hidden relative text-[9.82px] text-ellipsis whitespace-nowrap"
                             style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
                           >
-                            Messages
+                            Inbox
                           </p>
                         </div>
                         <div className="bg-[#172820] border-[0.351px] border-[#315f45] border-solid content-stretch flex items-center px-[4.211px] py-[1.404px] relative rounded-[5.614px] shrink-0">
@@ -231,7 +231,7 @@ export function FeatureSidebar() {
                               className="flex-[1_0_0] font-sans font-[500] leading-[14.035px] min-h-px min-w-px overflow-hidden relative text-[9.82px] text-ellipsis whitespace-nowrap"
                               style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
                             >
-                              Email Automation
+                              Email Broadcasting
                             </p>
                           </div>
                         </div>
@@ -254,15 +254,10 @@ export function FeatureSidebar() {
                       className="flex-[1_0_0] font-sans font-[500] leading-[14.035px] min-h-px min-w-px overflow-hidden relative text-[9.82px] text-ellipsis whitespace-nowrap"
                       style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
                     >
-                      Company Profile
+                      Career Page
                     </p>
                   </div>
                   <div className="overflow-clip relative shrink-0 size-[11.228px] text-muted-foreground flex items-center justify-center group-hover:text-foreground">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M4 12V20C4 20.5523 4.44772 21 5 21H19C19.5523 21 20 20.5523 20 20V12" />
-                      <path d="M16 6L12 2L8 6" />
-                      <path d="M12 2V15" />
-                    </svg>
                   </div>
                 </div>
               </div>

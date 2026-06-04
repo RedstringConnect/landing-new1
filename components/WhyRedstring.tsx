@@ -1,34 +1,89 @@
 "use client";
-import React, { useState, useEffect, Suspense, lazy } from "react";
+import React, { useState, useEffect, useRef, Suspense, lazy } from "react";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 
 const ImageDithering = lazy(() => 
   import("@paper-design/shaders-react").then((mod) => ({ default: mod.ImageDithering }))
 );
 
-const features = [
+type FeaturesType = {
+  title: string;
+  description: string;
+  gradient: string;
+  image: string;
+}
+
+const features:FeaturesType[] = [
   {
     title: "AI-Powered Screening",
     description:
       "Automatically evaluate candidates based on your custom criteria. Our AI learns what matters most to your team and surfaces the best matches instantly.",
     gradient: "from-primary/20 to-primary/0",
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=400&auto=format&fit=crop",
+    image: "/whyredstring/ranking.png",
   },
   {
     title: "Collaborative Hiring",
     description:
       "Bring your entire team into the hiring process. Share feedback, score candidates, and make decisions together with real-time collaboration tools.",
     gradient: "from-primary/20 to-primary/0",
-    image: "https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?q=80&w=400&auto=format&fit=crop",
+    image: "/whyredstring/collab.png",
   },
   {
     title: "Pipeline Analytics",
     description:
       "Track every stage of your hiring funnel with deep analytics. Identify bottlenecks, optimize your process, and hire faster with data-driven insights.",
     gradient: "from-primary/20 to-primary/0",
-    image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=400&auto=format&fit=crop",
+    image: "/whyredstring/analytics.png",
   },
 ];
+
+function FeatureCardImage({ feature, ditherColor }: { feature: FeaturesType, ditherColor: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setDimensions({
+          width: entry.contentRect.width,
+          height: entry.contentRect.height,
+        });
+      }
+    });
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={containerRef} className="relative w-full aspect-4/3 overflow-hidden rounded-t-[28px] rounded-b-[24px] bg-secondary shrink-0 z-10">
+      {/* Original Image */}
+      <Image src={feature.image} alt={feature.title} width={500} height={500} className="absolute inset-0 w-full h-full object-cover" />
+      
+      {/* Dithering Overlay */}
+      <div className="absolute inset-0 transition-transform duration-1200 ease-out z-10">
+        {dimensions.width > 0 && dimensions.height > 0 && (
+          <ImageDithering
+            width={dimensions.width}
+            height={dimensions.height}
+            image={feature.image}
+            colorBack="#00000000"
+            colorFront={ditherColor}
+            colorHighlight="#875bf7"
+            originalColors={true}
+            inverted={false}
+            type="2x2"
+            size={1}
+            colorSteps={4}
+            fit="cover"
+          />
+        )}
+      </div>
+      <div className="absolute inset-0 bg-linear-to-t  translate-y-12 from-card via-transparent to-transparent opacity-80 pointer-events-none z-20" />
+    </div>
+  );
+}
 
 export function WhyRedstring() {
   const { resolvedTheme } = useTheme();
@@ -54,38 +109,17 @@ export function WhyRedstring() {
         {features.map((feature, i) => (
           <div
             key={i}
-            className="group relative bg-card border border-border rounded-3xl hover:border-primary/50 transition-all duration-500 flex flex-col overflow-hidden shadow-sm hover:shadow-xl"
+            className="group relative bg-card border border-border rounded-[32px]  transition-all duration-500 flex flex-col overflow-hidden shadow-sm hover:shadow-lg p-1"
           >
-            <div className={`absolute inset-0 bg-gradient-to-b ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`} />
 
             {/* ImageDithering Full Width Square Header */}
-            <div className="relative w-full aspect-4/3 border-b border-border/50 overflow-hidden bg-secondary shrink-0 z-10">
-              <Suspense fallback={<div className="w-full h-full bg-muted animate-pulse" />}>
-                {mounted && (
-                  <div className="w-full h-full transition-transform duration-1200 ease-out">
-                    <ImageDithering
-                      width={600}
-                      height={600}
-                      image={feature.image}
-                      colorBack="#00000000"
-                      colorFront={ditherColor}
-                      colorHighlight="#875bf7"
-                      originalColors={false}
-                      inverted={false}
-                      type="2x2"
-                      size={2}
-                      colorSteps={2}
-                      fit="cover"
-                    />
-                  </div>
-                )}
-              </Suspense>
-              <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-80 pointer-events-none" />
-            </div>
+            <Suspense fallback={<div className="w-full aspect-4/3 bg-muted animate-pulse  shrink-0 z-10 " />}>
+              {mounted && <FeatureCardImage feature={feature} ditherColor={ditherColor} />}
+            </Suspense>
 
-            <div className="relative z-10 flex flex-col gap-[12px] p-8 mt-auto bg-card">
+            <div className="relative z-10 flex flex-col gap-2 pb-8 pt-4 px-2 bg-card">
               <h3
-                className="text-foreground text-[22px] font-[600] tracking-tight"
+                className="text-foreground text-[22px] font-semibold tracking-tight"
                 style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
               >
                 {feature.title}

@@ -5,6 +5,7 @@ import { Linkedin, Twitter, Sparkles } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import Image from "next/image";
+import { LinkedInIcon, TwitterIcon } from "../ui/icons";
 
 const teamMembers = [
   {
@@ -42,10 +43,16 @@ const teamMembers = [
     image: "/team/Chinmay.png",
     linkedin: "https://www.linkedin.com/in/chinmay-ram-4893ba382/",
   },
+  {
+    name: "Devashish",
+    role: "Full Stack Developer",
+    bio: "Engineer, builder, and lifelong learner. I turn ideas into products by combining first-principles thinking with relentless execution.",
+    image: "/team/devashish.png",
+    linkedin: "https://www.linkedin.com/in/devzshrc/",
+  },
 ];
 
 function TeamCard({ name, role, bio, image, linkedin }: (typeof teamMembers)[0]) {
-  const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -53,13 +60,12 @@ function TeamCard({ name, role, bio, image, linkedin }: (typeof teamMembers)[0])
     return () => clearTimeout(timer);
   }, []);
 
-  const ditherColor = mounted && resolvedTheme === "dark" ? "#ffffff" : "#000000";
 
   return (
     <motion.div 
-      className="group bg-card border border-border rounded-[32px] p-3 transition-all duration-500 flex flex-col gap-[16px] shadow-sm hover:shadow-xl h-full"
+      className="group bg-card border border-border rounded-[32px] p-1 transition-all duration-500 flex flex-col gap-[16px] shadow-sm hover:shadow-lg h-full"
     >
-      <div className="w-full aspect-[4/5] sm:h-[320px] rounded-[24px] bg-secondary flex items-center justify-center overflow-hidden relative shrink-0">
+      <div className="w-full aspect-[4/5] sm:h-[320px] rounded-t-[28px] rounded-b-[24px] bg-secondary flex items-center justify-center overflow-hidden relative shrink-0">
         <div className="w-full h-full">
           <Image
             src={image}
@@ -75,26 +81,26 @@ function TeamCard({ name, role, bio, image, linkedin }: (typeof teamMembers)[0])
           <div className="flex gap-2">
             {linkedin && (
               <a href={linkedin} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center hover:bg-white/40 transition-colors shadow-lg">
-                <Linkedin className="w-4 h-4 text-white" />
+                <LinkedInIcon className="w-full h-full text-white" />
               </a>
             )}
             <button className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center hover:bg-white/40 transition-colors shadow-lg">
-              <Twitter className="w-4 h-4 text-white" />
+              <TwitterIcon className="w-4 h-4 text-white" />
             </button>
           </div>
         </div>
       </div>
 
       <div className="flex flex-col gap-[12px] px-2 pb-3 grow">
-        <div className="flex flex-col items-start gap-2">
-          <h3 className="text-[22px] text-foreground font-semibold tracking-tight">
+        <div className="flex flex-col items-start">
+          <h3 className="text-xl text-foreground font-semibold tracking-tight">
             {name}
           </h3>
-          <span className="text-[13px] text-primary font-medium bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
+          <span className="text-md text-primary font-medium">
             {role}
           </span>
         </div>
-        <p className="text-[15px] text-muted-foreground leading-relaxed font-light mt-auto">
+        <p className="text-[15px] text-muted-foreground leading-normal font-light mt-auto">
           {bio}
         </p>
       </div>

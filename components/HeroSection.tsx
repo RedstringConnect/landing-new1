@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect, Suspense, lazy } from "react";
-import { CompanyMarquee } from "./CompanyMarquee";
+import dynamic from "next/dynamic";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
@@ -9,7 +9,9 @@ const Dithering = lazy(() =>
   import("@paper-design/shaders-react").then((mod) => ({ default: mod.Dithering }))
 )
 
+import { CompanyMarquee } from "./CompanyMarquee";
 import { DotFlow } from "@/components/ui/dot-flow";
+import { LineShadowText } from "./ui/line-shadow-text";
 
 const syncing = [
     [45, 38, 31, 24, 17, 23, 25],
@@ -84,10 +86,9 @@ const ctaItems = [
     },
 ];
 
-const words = ["startups", "solo founders", "recruiters", "enterprises"];
+const words = ["Startups", "Solo Founders", "Recruiters", "Enterprises"];
 
 const backedByLogos = [
-  { url: "/backedby/18startup.png", name: "18startup", className: "bg-white p-[2px] object-contain" },
   { url: "/backedby/tie.png", name: "TiE", className: "bg-white p-[3px] object-contain" },
   { url: "/backedby/iima.png", name: "IIMA", className: "bg-black p-[4px] object-contain dark:invert" },
 ];
@@ -144,14 +145,14 @@ export function HeroSection() {
 
   return (
     <section 
-      className="relative pt-[180px] pb-[40px] flex flex-col items-center overflow-hidden" 
+      className="relative pt-[240px] flex flex-col items-center overflow-hidden" 
       id="home"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Background Dithering Effect */}
-      <Suspense fallback={<div className="absolute inset-4 md:inset-16 bg-muted/20 rounded-xl" />}>
-        <div className="absolute inset-4 md:inset-16 z-0 pointer-events-none opacity-[0.08] dark:opacity-[0.15] overflow-hidden">
+      <Suspense fallback={<div className="absolute inset-x-4 top-16 bottom-0 md:inset-x-16 md:inset-be-40 bg-muted/20 rounded-xl" />}>
+        <div className="absolute inset-x-4 top-16 bottom-0 md:inset-bs-16 md:inset-x-16 md:inset-be-0 z-0 pointer-events-none opacity-[0.08] dark:opacity-[0.15] overflow-hidden">
           {mounted && (
             <Dithering
               colorBack="#00000000" // Transparent
@@ -167,7 +168,7 @@ export function HeroSection() {
       </Suspense>
 
       {/* Framing Borders */}
-      <div className="pointer-events-none absolute inset-x-0 top-4 h-px w-full bg-border md:top-16 z-10" />
+      <div className="pointer-events-none absolute inset-x-0 top-16 h-px w-full bg-border z-10" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px w-full bg-border z-10" />
 
       <div className="relative z-10 flex flex-col items-center gap-[12px] mb-[24px]">
@@ -183,11 +184,12 @@ export function HeroSection() {
                   width={50}
                   height={50}
                   alt={logo.name}
-                  className={`w-10 h-10 rounded-full border-2 border-background relative z-10 transition-transform duration-200 group-hover:scale-110 group-hover:z-20 ${logo.className}`}
+                  priority={true}
+                  className={`size-10 rounded-full border-2 border-background relative z-10 transition-transform duration-200 group-hover:scale-110 group-hover:z-20 ${logo.className}`}
                 />
                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-foreground text-background text-[12px] font-medium rounded-md shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap pointer-events-none z-50 translate-y-1 group-hover:translate-y-0">
                   {logo.name}
-                  <div className="absolute -bottom-[4px] left-1/2 -translate-x-1/2 border-[4px] border-transparent border-t-foreground" />
+                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-foreground" />
                 </div>
               </div>
             ))}
@@ -200,26 +202,26 @@ export function HeroSection() {
         style={{ fontVariationSettings: "'wdth' 100" }}
       >
         <span>The Hiring OS for&nbsp;</span>
-        <span className="text-primary inline-block text-left w-[160px] sm:w-[240px] md:w-[320px] lg:w-[360px]">
+          <LineShadowText shadowColor={resolvedTheme === "dark" ? "#fff" : "#000"} className="text-primary inline-block text-left w-[160px] sm:w-[240px] md:w-[320px] lg:w-[360px]">
           {text}
-        </span>
+          </LineShadowText>
       </h1>
 
-      <p className="relative z-10 mt-6 text-[18px] md:text-[22px] text-muted-foreground text-center max-w-[700px] leading-relaxed px-6 font-[400]">
+      <p className="relative z-10 mt-6 text-[18px] md:text-[20px] text-muted-foreground text-center max-w-[700px] leading-relaxed px-6 font-normal text-balance">
         We provide premier hiring services to top companies, sourcing the absolute best talent from our own cherry-picked candidates.
       </p>
 
       <div className="relative z-10 mt-[48px] flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-6">
         <DotFlow items={ctaItems} />
         <button
-          className="w-full sm:w-auto px-8 py-4 rounded-full bg-secondary border border-border text-foreground text-[16px] font-[500] hover:bg-secondary/80 transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 duration-300"
+          className="w-full sm:w-auto px-8 py-4 rounded-full bg-secondary border border-border text-foreground text-[16px] font-medium hover:bg-secondary/80 transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 duration-300"
           style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
         >
           Book a Demo
         </button>
       </div>
 
-      <div className="w-full mt-24 relative z-10 px-4 md:px-16 overflow-hidden">
+      <div className="w-full mt-12 relative z-10 px-4 md:px-16 overflow-hidden">
         <CompanyMarquee />
       </div>
     </section>

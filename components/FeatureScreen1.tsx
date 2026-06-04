@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FeatureSidebar } from "./FeatureSidebar";
 interface IconProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
@@ -45,27 +45,59 @@ export const ArrowRightIcon: React.FC<IconProps> = ({ size = 18, className, ...p
         <path d="M3.75 8.25023C3.33578 8.25023 3 8.586 3 9.00023C3.00005 9.41438 3.33582 9.75023 3.75 9.75023H12.9455C12.5597 10.1804 12.0434 10.6643 11.5085 11.1287C10.9592 11.6056 10.4073 12.048 9.99172 12.3723C9.78442 12.5341 9.36645 12.8542 9.24608 12.9451C8.96438 13.2002 8.9157 13.6322 9.14572 13.9448C9.39135 14.2782 9.86107 14.3498 10.1946 14.1045C10.3203 14.0096 10.7001 13.7225 10.9145 13.5552C11.3427 13.2211 11.9158 12.7607 12.4915 12.261C13.0633 11.7645 13.6545 11.2141 14.1086 10.7002C14.3349 10.4441 14.5434 10.1797 14.6989 9.9216C14.8422 9.68408 15 9.3573 15 9.00023L14.9927 8.8677C14.9605 8.56298 14.8242 8.28735 14.6989 8.0796C14.5434 7.82145 14.3349 7.5564 14.1086 7.30028C13.6546 6.78636 13.0633 6.23597 12.4915 5.7395C11.9158 5.23976 11.3427 4.77943 10.9145 4.4453C10.7001 4.27796 10.3203 3.99095 10.1946 3.89599C9.86107 3.65063 9.39202 3.72227 9.14647 4.05566C8.91622 4.36836 8.9643 4.80023 9.24608 5.05541C9.24608 5.05541 9.43132 5.19822 9.49148 5.24364C9.61177 5.33455 9.78442 5.4664 9.99172 5.62817C10.4073 5.95249 10.9592 6.39487 11.5085 6.87182C12.0434 7.33623 12.5597 7.8201 12.9455 8.25023H3.75Z" fill="white" />
     </svg>
 );
-const chips = [
-  { label: "Location", done: true },
-  { label: "Job title", done: true },
-  { label: "Years of experience", done: false },
-  { label: "Expected salary", done: false },
-  { label: "Skills", done: false },
-  { label: "Industry", done: false },
+const chipDefinitions = [
+  { label: "Location", match: (text: string) => text.toLowerCase().includes("chennai") },
+  { label: "Job title", match: (text: string) => text.toLowerCase().includes("senior ux designer") },
+  { label: "Years of experience", match: (text: string) => text.toLowerCase().includes("10+ years") },
+  { label: "Expected salary", match: (text: string) => text.toLowerCase().includes("₹1,500,000") },
+  { label: "Skills", match: (text: string) => text.toLowerCase().includes("figma") || text.toLowerCase().includes("ux") },
+  { label: "Industry", match: (text: string) => text.toLowerCase().includes("fintech") || text.toLowerCase().includes("tech") },
 ];
 
+const SEARCH_TEXT = "Generate a form for a Senior UX Designer with 10+ years of experience and a minimum salary expectation of ₹1,500,000 from Chennai";
+
 export function FeatureScreen1() {
+  const [text, setText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+
+    if (isDeleting) {
+      if (text === "") {
+        timer = setTimeout(() => {
+          setIsDeleting(false);
+        }, 600);
+      } else {
+        timer = setTimeout(() => {
+          setText(SEARCH_TEXT.substring(0, text.length - 1));
+        }, 20); // Fast delete
+      }
+    } else {
+      if (text === SEARCH_TEXT) {
+        timer = setTimeout(() => {
+          setIsDeleting(true);
+        }, 3000); // Wait 3s before deleting
+      } else {
+        timer = setTimeout(() => {
+          setText(SEARCH_TEXT.substring(0, text.length + 1));
+        }, 40); // Type speed
+      }
+    }
+
+    return () => clearTimeout(timer);
+  }, [text, isDeleting]);
+
   return (
     <div
-      className="dark bg-background content-stretch flex flex-[1_0_0] h-[687px] items-start p-[3.164px] relative rounded-[25.309px] shadow-[0px_9.491px_12.655px_0px_rgba(255,255,255,0),0px_3.164px_4.746px_0px_rgba(255,255,255,0),0px_1.582px_1.582px_0px_rgba(255,255,255,0)] w-full"
-      data-name="1921 Inner shadow"
+      className="dark content-stretch flex flex-[1_0_0] h-[687px] items-start p-[3.164px] w-full scale-90 pointer-events-none select-none"
     >
       <div
-        className="bg-background border-[1.582px] border-border border-solid content-stretch flex flex-col items-start overflow-clip relative rounded-[18.982px]"
+        className=" content-stretch flex flex-col items-start overflow-clip relative "
         data-name="Mockup wrapper"
       >
         <div
-          className="bg-background content-stretch flex isolate items-start overflow-clip p-[11.237px] relative w-[1011.345px]"
+          className=" content-stretch flex isolate items-start overflow-clip p-[11.237px] relative w-[1011.345px]"
           data-name="1440px"
         >
           <div
@@ -77,23 +109,6 @@ export function FeatureScreen1() {
               className="bg-background content-stretch flex flex-[1_0_0] flex-col gap-[14.035px] h-[622.46px] items-center justify-center min-w-px overflow-clip p-[22.456px] relative rounded-[11.228px] z-[1]"
               data-name="Main UI"
             >
-              <div
-                className="absolute content-stretch flex flex-col gap-[4.211px] items-center justify-center left-[193.84px] top-[197.68px] whitespace-nowrap"
-                data-node-id="7620:183389"
-              >
-                <p
-                  className="font-[540] font-denton leading-[26.667px] relative shrink-0 text-foreground text-[21.053px]"
-                  style={{ fontVariationSettings: "'wdth' 100" }}
-                >
-                  LoopX Forms
-                </p>
-                <p
-                  className="font-normal font-sans leading-[14.035px] relative shrink-0 text-muted-foreground text-[9.825px] text-center"
-                  style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
-                >
-                  What would you like to create?
-                </p>
-              </div>
               <div
                 className="absolute content-stretch flex flex-col gap-[22.456px] items-center justify-center left-[186.82px] max-w-[449.124px] top-[267.18px] w-[449.124px]"
                 data-node-id="7620:183395"
@@ -117,10 +132,10 @@ export function FeatureScreen1() {
                         data-node-id="7620:183399"
                       >
                         <p
-                          className="flex-[1_0_0] font-sans font-[500] leading-[16.842px] min-w-px relative text-foreground text-[11.23px]"
+                          className="flex-[1_0_0] font-sans font-[500] leading-[16.842px] min-w-px relative text-foreground text-[11.23px] after:content-['|'] after:animate-pulse after:ml-[2px] after:opacity-50"
                           style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
                         >
-                          Generate a form for a Senior UX Designer with 10+ years of experience and a minimum salary expectation of ₹1,500,000 from Chennai
+                          {text}
                         </p>
                       </div>
                     </div>
@@ -150,24 +165,27 @@ export function FeatureScreen1() {
                       className="content-stretch flex gap-[8.421px] items-center justify-center relative shrink-0 w-full flex-wrap"
                       data-node-id="7620:183407"
                     >
-                      {chips.map((chip, i) => (
-                        <div
-                          key={i}
-                          className={`content-stretch flex gap-[2.807px] items-center pl-[4.211px] pr-[5.614px] py-[1.404px] relative rounded-[5.614px] shrink-0 border-[0.351px] ${
-                            chip.done ? "bg-[#172820] border-[#315f45]" : "border-border"
-                          }`}
-                        >
-                          <CheckmarkCircleIcon size={11.228} className={chip.done ? "text-[#caf7da]" : "text-foreground"} />
-                          <p
-                            className={`font-sans font-[500] leading-[14.035px] relative shrink-0 text-[9.82px] text-center whitespace-nowrap ${
-                              chip.done ? "text-[#caf7da]" : "text-foreground"
+                      {chipDefinitions.map((chipDef, i) => {
+                        const isDone = chipDef.match(text);
+                        return (
+                          <div
+                            key={i}
+                            className={`content-stretch flex gap-[2.807px] items-center pl-[4.211px] pr-[5.614px] py-[1.404px] relative rounded-[5.614px] shrink-0 transition-colors duration-300 border-[0.351px] ${
+                              isDone ? "bg-[#172820] border-[#315f45]" : "border-border"
                             }`}
-                            style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
                           >
-                            {chip.label}
-                          </p>
-                        </div>
-                      ))}
+                            <CheckmarkCircleIcon size={11.228} className={isDone ? "text-[#caf7da]" : "text-foreground"} />
+                            <p
+                              className={`font-sans font-[500] leading-[14.035px] relative shrink-0 text-[9.82px] text-center whitespace-nowrap ${
+                                isDone ? "text-[#caf7da]" : "text-foreground"
+                              }`}
+                              style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+                            >
+                              {chipDef.label}
+                            </p>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>

@@ -66,6 +66,12 @@ export const DotLoader = ({
             }, duration);
         } else {
             if (interval.current) clearInterval(interval.current);
+            // Reset to frame 0 immediately when stopped
+            currentIndex.current = 0;
+            const dotElements = gridRef.current?.children;
+            if (dotElements) {
+                applyFrameToDots(Array.from(dotElements) as HTMLDivElement[], 0);
+            }
         }
 
         return () => {

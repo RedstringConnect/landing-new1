@@ -25,32 +25,32 @@ const faqs = [
   }
 ];
 
-function FAQItem({ question, answer }: (typeof faqs)[0]) {
+function FAQItem({ question, answer, i }: (typeof faqs)[0] & { i: number }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="border-b border-border last:border-0">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between py-6 text-left group"
+        className="w-full flex items-start justify-between py-6 text-left group cursor-pointer"
       >
         <span
           className="text-[16px] md:text-[18px] text-foreground font-[500] group-hover:text-primary transition-colors pr-8"
         >
           {question}
         </span>
-        <div className={`flex-shrink-0 w-8 h-8 rounded-full border border-border bg-white/5 flex items-center justify-center transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-            <path d="M12 5v14M5 12h14" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
+        {/* Custom Minimal Animated Plus/Minus in a circle to match standard FAQ but more premium */}
+        <div className={`shrink-0 mt-0.5 relative w-8 h-8 rounded-full border border-border bg-white/5 flex items-center justify-center transition-transform duration-500`}>
+          <div className="absolute w-3 h-[1.5px] bg-foreground transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+          <div className={`absolute w-3 h-[1.5px] bg-foreground transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "rotate-0 opacity-0" : "rotate-90 opacity-100"}`} />
         </div>
       </button>
       <div
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+        className={`overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           isOpen ? "max-h-[300px] opacity-100 pb-6" : "max-h-0 opacity-0"
         }`}
       >
-        <p className="text-[15px] text-muted-foreground leading-relaxed max-w-[800px]">
+        <p className="text-[14px] md:text-[15px] text-muted-foreground leading-relaxed">
           {answer}
         </p>
       </div>
@@ -81,7 +81,7 @@ export function PlannerFAQ() {
       >
         <div className="bg-card/50 backdrop-blur-md border border-border rounded-3xl p-6 md:p-8">
           {faqs.map((faq, i) => (
-            <FAQItem key={i} {...faq} />
+            <FAQItem key={i} {...faq} i={i} />
           ))}
         </div>
       </motion.div>

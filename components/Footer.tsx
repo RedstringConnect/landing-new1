@@ -13,7 +13,7 @@ export function Footer() {
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8 flex flex-col h-full">
         <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-24">
           <div className="flex-shrink-0">
-            <img src="/logo.svg" alt="Redstring Logo" className="h-[32px] w-auto" />
+            <img src="/logo.svg" alt="Redstring Logo" className="h-[32px] w-auto" loading="lazy" />
           </div>
 
           <div className="grid grid-cols-2 gap-x-[100px] gap-y-12">

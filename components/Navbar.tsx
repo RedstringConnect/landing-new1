@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 import { Moon, Sun, Map as MapIcon } from "lucide-react";
 import Link from "next/link";
 import Logo from "@/components/logo";
-import { motion, AnimatePresence, Variants } from "motion/react";
+import { motion, AnimatePresence, Variants, useScroll, useMotionValueEvent } from "motion/react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -24,20 +24,15 @@ const navLinks = [
 
 const hiringTools = [
   {
-    title: "Hiring Planner",
-    href: "/tools/hiring-planner",
+    title: "Runway to ROI Hiring Planner",
+    href: "/tools/runway-to-roi",
     description: "Map out your hiring strategy, evaluate timelines, and forecast budget with our intelligent planner.",
   },
   {
-    title: "Resume Screener",
-    href: "#",
-    description: "Automatically parse and evaluate hundreds of resumes in seconds with AI.",
-  },
-  {
-    title: "Interview Copilot",
-    href: "#",
-    description: "Get real-time question suggestions and candidate analysis during interviews.",
-  },
+    title: "Hiring Playbook Generator",
+    href: "/tools/hiring-playbook-generator",
+    description: "Generate a custom, AI-driven hiring strategy tailored for your specific role and industry.",
+  }
 ];
 
 interface NavbarProps {
@@ -62,6 +57,16 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [isFloating, setIsFloating] = useState(false);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > 64) {
+      setIsFloating(true);
+    } else {
+      setIsFloating(false);
+    }
+  });
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps, react-hooks/set-state-in-effect
@@ -72,12 +77,12 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
     return (
       <motion.nav 
         layoutId="global-navbar"
-        transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
+        transition={{ duration: 0.4, ease: "easeInOut" }}
         className="absolute top-6 left-6 md:left-8 z-40 w-full max-w-sm sm:max-w-md bg-background/80 backdrop-blur-xl border border-border rounded-2xl shadow-lg p-6 pointer-events-auto"
       >
         <div className="flex items-center justify-between mb-6">
           <Link href="/">
-            <motion.div layoutId="nav-logo" transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }} className="flex items-center">
+            <motion.div layoutId="nav-logo" transition={{ duration: 0.4, ease: "easeInOut" }} className="flex items-center">
               <Logo className="h-[28px] w-auto text-foreground" />
             </motion.div>
           </Link>
@@ -151,10 +156,10 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
                 ))}
                 <motion.div variants={itemVariants}>
                   <Link
-                    href="/tools/hiring-planner"
+                    href="/tools/runway-to-roi"
                     className="block py-2 text-[15px] text-foreground hover:text-primary transition-colors"
                   >
-                    Hiring Planner
+                    Runway to ROI Hiring Planner
                   </Link>
                 </motion.div>
               </div>
@@ -168,20 +173,26 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
   // STANDARD LAYOUT
   return (
     <motion.nav 
-      layoutId="global-navbar"
-      transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
-      className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-[1280px] z-50 bg-background/80 backdrop-blur-xl border border-border rounded-3xl shadow-lg"
+      layout
+      transition={{ duration: 0.4, ease: "easeInOut" }}
+      className={`z-50 transition-colors duration-300 ${
+        isFloating
+          ? "fixed top-4 inset-x-0 mx-auto w-[95%] max-w-[1280px] bg-background/80 backdrop-blur-xl border border-border rounded-3xl shadow-md"
+          : "absolute top-0 inset-x-0 w-full bg-transparent border-transparent"
+      }`}
     >
-      <div className="flex items-center justify-between px-6 lg:px-8 h-[72px]">
+      <div className={`flex items-center justify-between transition-all duration-300 ${
+        isFloating ? "h-[72px] px-6 lg:px-8" : "h-16 px-6 md:px-20"
+      }`}>
         <div className="flex items-center">
           <Link href="/">
-            <motion.div layoutId="nav-logo" transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }} className="flex items-center">
+            <motion.div layoutId="nav-logo" transition={{ duration: 0.4, ease: "easeInOut" }} className="flex items-center">
               <Logo className="h-[28px] w-auto text-foreground" />
             </motion.div>
           </Link>
         </div>
 
-        <motion.div layoutId="nav-links" className="hidden md:flex items-center gap-[16px]">
+        <motion.div layoutId="nav-links" transition={{ duration: 0.4, ease: "easeInOut" }} className="hidden md:flex items-center gap-[16px]">
           {navLinks.map((link) => (
             <Link
               key={link.label}
@@ -223,7 +234,7 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
           </NavigationMenu>
         </motion.div>
 
-        <motion.div layoutId="nav-auth" className="hidden md:flex items-center gap-4">
+        <motion.div layoutId="nav-auth" transition={{ duration: 0.4, ease: "easeInOut" }} className="hidden md:flex items-center gap-4">
           {mounted && (
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -235,7 +246,7 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
           )}
           <a
             href="#"
-            className="hidden md:flex items-center px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-[14px] font-[500] hover:opacity-90 transition-opacity duration-200 shadow-md shadow-primary/20"
+            className="hidden md:flex items-center px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-[14px] font-medium hover:opacity-90 transition-opacity duration-200 shadow-md shadow-primary/20"
             style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
           >
             Login / Signup
@@ -266,7 +277,9 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
             initial="hidden"
             animate="visible"
             exit="hidden"
-            className="md:hidden overflow-hidden bg-background/95 backdrop-blur-xl border-t border-border rounded-b-2xl absolute top-[72px] left-0 w-full"
+            className={`md:hidden overflow-hidden bg-background/95 backdrop-blur-xl border-t border-border rounded-b-2xl absolute left-0 w-full ${
+              isFloating ? "top-[72px]" : "top-[72px]"
+            }`}
           >
             <div className="px-6 pb-6 pt-4">
               <motion.div variants={itemVariants} className="flex items-center justify-between mb-4 border-b border-border pb-4">
@@ -315,7 +328,7 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
                 <motion.div variants={itemVariants}>
                   <a
                     href="#"
-                    className="mt-6 block w-full text-center px-5 py-3 rounded-xl bg-primary text-primary-foreground text-[15px] font-[500] shadow-md shadow-primary/20"
+                    className="mt-6 block w-full text-center px-5 py-3 rounded-xl bg-primary text-primary-foreground text-[15px] font-medium shadow-md shadow-primary/20"
                   >
                     Login / Signup
                   </a>

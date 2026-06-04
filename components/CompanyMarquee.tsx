@@ -1,7 +1,7 @@
 "use client";
 
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import React from "react";
 
 const companies = [
   "18startup.png",
@@ -24,9 +24,47 @@ const companies = [
   "vasudha.png"
 ];
 
+function LazyImage({ src, alt }: { src: string; alt: string }) {
+  const [inView, setInView] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect(); // Keep it in memory once loaded
+        }
+      },
+      { rootMargin: "300px" } // Load well before it enters screen to prevent pop-in
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="w-[120px] h-[120px] flex items-center justify-center">
+      {inView && (
+        <Image
+          src={src}
+          alt={alt}
+          width={120}
+          height={120}
+          className="w-auto h-auto object-contain"
+          loading="lazy"
+          decoding="async"
+        />
+      )}
+    </div>
+  );
+}
+
 export function CompanyMarquee() {
   return (
-    <section className="py-[80px] flex flex-col items-center gap-[40px]">
+    <section className="pt-[40px] flex flex-col items-center gap-[10px]">
       <p
         className="text-[20px] md:text-[24px] text-muted-foreground text-center"
         style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
@@ -34,20 +72,16 @@ export function CompanyMarquee() {
         Autopiloted Hiring for these companies
       </p>
 
-      <div className="relative w-full overflow-hidden">
-
-        <div className="flex animate-marquee">
+      <div className="relative w-full overflow-hidden border-t-2">
+        <div className="flex animate-marquee ">
           {[...companies, ...companies].map((company, i) => (
             <div
               key={`${company}-${i}`}
-              className="flex-shrink-0 flex items-center justify-center mx-[32px] md:mx-[32px]"
+              className="flex-shrink-0 flex py-8 px-12 border-r-2 items-center justify-center"
             >
-              <Image
+              <LazyImage 
                 src={`/logos/${company}`}
                 alt={company.replace(".png", "")}
-                width={120}
-                height={120}
-                className="w-auto h-auto object-contain"
               />
             </div>
           ))}
