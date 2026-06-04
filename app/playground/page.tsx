@@ -27,7 +27,7 @@ const COMPONENT_REGISTRY = [
     name: "DotLoader",
     render: () => (
       <div className="p-12 bg-card rounded-xl border border-border flex items-center justify-center">
-        <DotLoader />
+        <DotLoader frames={[[0, 1, 2], [3, 4, 5], [6, 7, 8]]} />
       </div>
     )
   }
