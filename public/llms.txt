@@ -1,0 +1,21 @@
+# Redstring
+
+> The Hiring OS
+
+Redstring is an AI-powered hiring operating system that automates candidate sourcing, screening, and interview scheduling.
+
+## Features
+- **AI-Powered Candidate Sourcing**: Find the best talent across multiple platforms.
+- **Automated Screening**: Assess candidates effortlessly without manual intervention.
+- **Interview Scheduling**: Sync calendars and automate meeting setups.
+
+## Links
+- Homepage: https://www.redstring.ai
+- Dashboard: https://app.redstring.ai
+
+## Stack
+This project is built using:
+- Next.js (App Router)
+- React
+- Tailwind CSS
+- TypeScript
