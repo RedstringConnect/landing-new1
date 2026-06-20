@@ -4,36 +4,29 @@ import { motion } from "motion/react";
 import { DotLoader } from "../ui/dot-loader";
 import { slidersFramesMapped, mathFrames, downloadFrames } from "../ui/why-how-animations";
 
-const steps = [
-  {
-    step: "01",
-    title: "Define Roles",
-    description: "Input your required roles, seniority levels, and target start dates into the planner.",
-    frames: slidersFramesMapped,
-  },
-  {
-    step: "02",
-    title: "Calculate Needs",
-    description: "Our AI calculates required pipeline size, budget, and estimated time to hire.",
-    frames: mathFrames,
-  },
-  {
-    step: "03",
-    title: "Get Result",
-    description: "Export the plan or seamlessly integrate it with your ATS to begin sourcing.",
-    frames: downloadFrames,
-  }
-];
+const ANIMATIONS: Record<string, number[][]> = {
+  sliders: slidersFramesMapped,
+  math: mathFrames,
+  download: downloadFrames,
+};
 
-type StepItem = {
+interface ToolHowStep {
   step: string;
   title: string;
   description: string;
-  frames: number[][];
-};
+  icon: string;
+}
 
-const StepCard = ({ item }: { item: StepItem }) => {
+interface ToolHowProps {
+  data: {
+    title: string;
+    steps: ToolHowStep[];
+  }
+}
+
+const StepCard = ({ item }: { item: ToolHowStep }) => {
   const [isHovered, setIsHovered] = React.useState(false);
+  const frames = ANIMATIONS[item.icon] || slidersFramesMapped;
 
   return (
     <div className="w-full flex justify-center">
@@ -49,7 +42,7 @@ const StepCard = ({ item }: { item: StepItem }) => {
           <div className="w-[64px] h-[64px] md:w-[80px] md:h-[80px] rounded-2xl bg-secondary/30 border border-foreground/5 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-500">
             <div className="scale-90 md:scale-100">
               <DotLoader 
-                frames={item.frames} 
+                frames={frames} 
                 isPlaying={isHovered} 
                 duration={150}
                 repeatCount={1}
@@ -75,7 +68,7 @@ const StepCard = ({ item }: { item: StepItem }) => {
   );
 };
 
-export function HowItWorks() {
+export function ToolHow({ data }: ToolHowProps) {
   return (
     <section className="py-[120px] relative z-10 flex flex-col items-center max-w-[1280px] mx-auto px-6 lg:px-12">
       <motion.h2
@@ -86,12 +79,11 @@ export function HowItWorks() {
         className="font-[540] font-denton text-foreground text-[36px] md:text-[48px] lg:text-[56px] text-center mb-[60px] md:mb-[80px] w-full tracking-tight"
         style={{ fontVariationSettings: "'wdth' 100" }}
       >
-        How it works
+        {data.title}
       </motion.h2>
 
-      {/* Standard List Container */}
-      <div className="relative flex flex-col gap-6 w-full max-w-[760px] mx-auto">
-        {steps.map((item, i) => (
+      <div className="relative flex flex-col gap-6 w-full max-w-5xl mx-auto">
+        {data.steps.map((item, i) => (
           <StepCard 
             key={i} 
             item={item} 

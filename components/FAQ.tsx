@@ -1,80 +1,46 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import { FAQItem } from "./FAQItem";
 
 const faqs = [
   {
-    question: "What is Redstring and how does it work?",
+    question: "What is Redstring?",
     answer:
-      "Redstring is an AI-powered hiring operating system that automates candidate sourcing, screening, and interview scheduling. It connects to 50+ platforms, uses smart algorithms to match candidates to your criteria, and streamlines your entire hiring workflow.",
+      "Redstring builds AI-powered workflow systems that help businesses automate repetitive work while keeping people at the center of important decisions. We believe technology should reduce operational chaos not replace human judgment.",
   },
   {
-    question: "How does AI-powered screening work?",
+    question: "How do I know if Redstring is right for my business?",
     answer:
-      "Our AI analyzes resumes, portfolios, and profiles against your custom criteria. It learns from your team's hiring patterns and continuously improves its matching accuracy, helping you identify the best candidates faster than manual review.",
+      "If your team spends hours on repetitive operational tasks, manual coordination, or disconnected processes, Redstring can help automate and simplify those workflows.",
   },
   {
-    question: "Can I collaborate with my team on hiring?",
+    question: "How reliable are the team structure and capital recommendations? or Can I use these projections to set my hiring budget with confidence?",
     answer:
-      "Absolutely. Redstring is built for team hiring. Share candidate profiles, leave structured feedback, score applicants, and make data-driven hiring decisions together — all in real-time with built-in collaboration tools.",
+      "Absolutely. Our metrics aggregate real-time data from startup hiring activity across Indian tech hubs like Bengaluru, Hyderabad, and Pune. While every startup has unique needs, our benchmarks reflect current market realities, giving you a data-backed starting point for your budget rather than a guess.",
   },
   {
-    question: "What platforms does Redstring integrate with?",
+    question: "Does Redstring replace recruiters or hiring managers?",
     answer:
-      "Redstring integrates with 50+ sourcing platforms including LinkedIn, Indeed, GitHub, AngelList, and more. We also connect with your existing tools like Slack, email, calendar, and ATS systems for a seamless workflow.",
+      "No. Our goal is to automate repetitive tasks, not human decision-making. Recruiters and hiring managers remain at the center of every hiring decision.",
   },
   {
-    question: "How long does it take to set up?",
+    question: "How is Redstring different from other hiring tools?",
     answer:
-      "Most teams are up and running in under 15 minutes. Simply create your account, define your hiring criteria, and start sourcing candidates. Our onboarding wizard guides you through every step.",
+      "Most tools focus on managing applicants. We focus on eliminating repetitive work. From planning and screening to communication and workflow automation, Redstring helps your team spend less time on operations and more time making great hiring decisions.",
   },
   {
-    question: "Is there a free plan available?",
+    question: "Can Redstring be customized for our hiring process?",
     answer:
-      "Yes! Redstring offers a generous free tier that includes AI screening for up to 50 candidates per month, basic collaboration features, and access to our core sourcing tools. Upgrade anytime for unlimited usage.",
+      "Yes. Our solutions are designed to adapt to your hiring workflow rather than forcing you into a one-size-fits-all process.",
   },
 ];
 
-function FAQItem({ question, answer }: (typeof faqs)[0]) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <div className="border-b border-border last:border-0">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between py-5 text-left group"
-      >
-        <span
-          className="text-[16px] md:text-[18px] text-foreground font-[500] group-hover:text-primary transition-colors pr-8"
-          style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
-        >
-          {question}
-        </span>
-        <div className={`flex-shrink-0 w-8 h-8 rounded-full border border-border flex items-center justify-center transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-            <path d="M12 5v14M5 12h14" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
-        </div>
-      </button>
-      <div
-        className={`overflow-hidden transition-all duration-300 ${
-          isOpen ? "max-h-[300px] opacity-100 pb-5" : "max-h-0 opacity-0"
-        }`}
-      >
-        <p
-          className="text-[14px] md:text-[15px] text-muted-foreground leading-relaxed"
-          style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
-        >
-          {answer}
-        </p>
-      </div>
-    </div>
-  );
-}
+// The custom FAQItem has been moved to components/FAQItem.tsx
 
 export function FAQ() {
   return (
-    <section className="py-[120px] flex flex-col items-center">
+    <section className="py-[120px] container mx-auto flex flex-col items-center">
       <h2
         className="font-[540] font-denton text-foreground text-[28px] md:text-[36px] lg:text-[48px] text-center mb-[48px] max-w-[700px] leading-[1.15]"
         style={{ fontVariationSettings: "'wdth' 100" }}
@@ -82,10 +48,12 @@ export function FAQ() {
         We&apos;ve Got the Answers You&apos;re Looking For
       </h2>
 
-      <div className="max-w-[988px] mx-auto px-6 lg:px-8 w-full bg-card border border-border rounded-2xl">
-        {faqs.map((faq, i) => (
-          <FAQItem key={i} {...faq} />
-        ))}
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="bg-card/50 backdrop-blur-md border border-border rounded-3xl p-6 md:p-8">
+          {faqs.map((faq, i) => (
+            <FAQItem key={i} {...faq} />
+          ))}
+        </div>
       </div>
     </section>
   );

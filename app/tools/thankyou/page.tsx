@@ -7,8 +7,8 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { HiringPlannerResult } from "@/components/thankyou/HiringPlannerResult";
 import { GenericDownloadResult } from "@/components/thankyou/GenericDownloadResult";
-import { LoopXPromo } from "@/components/thankyou/LoopXPromo";
-import { RedstringPromo } from "@/components/thankyou/RedstringPromo";
+import { LatestTools } from "@/components/thankyou/LatestTools";
+import { FinalCTA } from "@/components/FinalCTA";
 
 const Dithering = lazy(() => 
   import("@paper-design/shaders-react").then((mod) => ({ default: mod.Dithering }))
@@ -33,7 +33,7 @@ function ThankYouContent() {
     <div className="flex flex-col w-full min-h-screen">
       
       {/* Hero Result Section */}
-      <section className="relative min-h-[650px] md:min-h-[750px] pt-[120px] pb-[60px] md:pt-[160px] md:pb-[100px] flex flex-col items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen pt-[120px] pb-[60px] md:pt-[160px] md:pb-[100px] flex flex-col items-center justify-center overflow-hidden">
         
         {/* Background Dithering Effect */}
         <Suspense fallback={<div className="absolute inset-x-4 top-16 bottom-0 md:inset-x-16 md:inset-be-40 bg-muted/20 rounded-xl" />}>
@@ -68,13 +68,11 @@ function ThankYouContent() {
         </div>
       </section>
 
-      {/* Promos Section */}
-      <section className="py-20 md:py-32 relative z-10">
-        <div className="w-full max-w-[1200px] px-6 lg:px-12 mx-auto flex flex-col gap-8 md:gap-12">
-          <LoopXPromo />
-          <RedstringPromo />
-        </div>
-      </section>
+      <div className="w-full h-px bg-border" />
+      <LatestTools currentTool={tool} />
+      <div className="w-full h-px bg-border" />
+      <FinalCTA />
+      <div className="w-full h-px bg-border" />
     </div>
   );
 }

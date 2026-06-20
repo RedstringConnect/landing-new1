@@ -141,6 +141,7 @@ export function OlaMap() {
               filter: ['has', 'point_count'],
               layout: {
                 'text-field': '{point_count_abbreviated}',
+                'text-font': ['Open Sans Regular'],
                 'text-size': 14,
               },
               paint: {
@@ -168,6 +169,7 @@ export function OlaMap() {
               filter: ['!', ['has', 'point_count']],
               layout: {
                 'text-field': ['get', 'logo'],
+                'text-font': ['Open Sans Regular'],
                 'text-size': 16,
               },
               paint: {

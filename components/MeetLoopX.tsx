@@ -3,10 +3,10 @@ import { FeatureScreen1 } from "./FeatureScreen1";
 import { ArrowRightIcon } from "./ui/icons";
 
 const features = [
-  "AI-powered candidate sourcing",
-  "Smart screening with custom evaluation criteria",
-  "Real-time collaboration with your hiring team",
-  "Deep analytics on pipeline health and velocity",
+  "Generates hiring forms instantly with a prompt",
+  "Matches the candidates with the most effective algorithm",
+  "OutReach to candidates at scale using our broadcaster",
+  "Invite team, Organise Feedback and Data of your hiring pipeline",
 ];
 
 export function MeetLoopX() {
@@ -14,11 +14,14 @@ export function MeetLoopX() {
     <section className="py-[120px] flex flex-col lg:flex-row items-center gap-[80px] max-w-7xl mx-auto px-6" id="loopx">
       <div className="flex-1 flex flex-col gap-[48px] max-w-[520px]">
         <div className="flex flex-col gap-[12px]">
+          <span className="text-primary font-[600] text-[16px] tracking-wide" style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}>
+            Meet LoopX
+          </span>
           <h2
             className="font-[540] font-denton text-foreground text-[36px] md:text-[44px] lg:text-[48px] leading-[1.1]"
             style={{ fontVariationSettings: "'wdth' 100" }}
           >
-            Meet LoopX
+            Your Personalized hiring tool that fits in your hiring pipeline
           </h2>
         </div>
 

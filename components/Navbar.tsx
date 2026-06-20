@@ -16,10 +16,21 @@ import {
 } from "@/components/ui/navigation-menu";
 
 const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Jobs Map", href: "/jobs-map" },
   { label: "LoopX", href: "https://loopx.redstring.co.in" },
+  { label: "Jobs Map", href: "/jobs-map" },
+];
+
+const contentLinks = [
+  {
+    title: "Blog",
+    href: "/blog",
+    description: "Read our latest articles, insights, and company updates.",
+  },
+  {
+    title: "Playbooks & Guides",
+    href: "/playbooks",
+    description: "Free Excel sheets, hiring Playbooks, and top startup reports.",
+  }
 ];
 
 const hiringTools = [
@@ -208,25 +219,50 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-[15px] text-muted-foreground hover:text-foreground bg-transparent hover:bg-transparent data-[state=open]:bg-transparent">
-                  Hiring Tools
+                  Resources
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-background">
-                    {hiringTools.map((tool) => (
-                      <li key={tool.title}>
-                        <NavigationMenuLink>
-                          <Link
-                            href={tool.href}
-                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-secondary hover:text-accent-foreground focus:bg-secondary focus:text-accent-foreground"
-                          >
-                            <div className="text-sm font-medium leading-none text-foreground">{tool.title}</div>
-                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-2">
-                              {tool.description}
-                            </p>
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
+                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                    <li className="flex flex-col gap-1">
+                      <h4 className="text-[13px] font-medium text-muted-foreground mb-1 uppercase tracking-wider px-3 pt-2">Content & Guides</h4>
+                      <ul className="flex flex-col gap-1 w-full">
+                        {contentLinks.map((link) => (
+                          <li key={link.title}>
+                            <NavigationMenuLink>
+                              <Link
+                                href={link.href}
+                                className="flex flex-col items-start gap-2 p-3 h-auto"
+                              >
+                                <div className="text-sm font-medium leading-none text-foreground">{link.title}</div>
+                                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                  {link.description}
+                                </p>
+                              </Link>
+                            </NavigationMenuLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                    <li className="flex flex-col gap-1">
+                      <h4 className="text-[13px] font-medium text-muted-foreground mb-1 uppercase tracking-wider px-3 pt-2">Hiring Tools</h4>
+                      <ul className="flex flex-col gap-1 w-full">
+                        {hiringTools.map((tool) => (
+                          <li key={tool.title}>
+                            <NavigationMenuLink>
+                              <Link
+                                href={tool.href}
+                                className="flex flex-col items-start gap-2 p-3 h-auto"
+                              >
+                                <div className="text-sm font-medium leading-none text-foreground">{tool.title}</div>
+                                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                  {tool.description}
+                                </p>
+                              </Link>
+                            </NavigationMenuLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -278,7 +314,7 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
             animate="visible"
             exit="hidden"
             className={`md:hidden overflow-hidden bg-background/95 backdrop-blur-xl border-t border-border rounded-b-2xl absolute left-0 w-full ${
-              isFloating ? "top-[72px]" : "top-[72px]"
+              isFloating ? "top-[72px]" : "top-16"
             }`}
           >
             <div className="px-6 pb-6 pt-4">
@@ -308,6 +344,22 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
                     </Link>
                   </motion.div>
                 ))}
+
+                <motion.div variants={itemVariants} className="py-3 border-b border-border">
+                  <span className="text-[15px] text-muted-foreground font-medium mb-2 block">Content & Guides</span>
+                  <div className="flex flex-col gap-2 pl-4">
+                    {contentLinks.map((link) => (
+                      <Link
+                        key={link.title}
+                        href={link.href}
+                        className="block py-2 text-[14px] text-foreground hover:text-primary transition-colors"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {link.title}
+                      </Link>
+                    ))}
+                  </div>
+                </motion.div>
 
                 <motion.div variants={itemVariants} className="py-3 border-b border-border">
                   <span className="text-[15px] text-muted-foreground font-medium mb-2 block">Hiring Tools</span>

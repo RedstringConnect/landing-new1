@@ -66,7 +66,7 @@ const heartbit = [
     [24],
 ];
 
-const ctaItems = [
+export const ctaItems = [
     {
         title: "Find Candidates",
         frames: searching,
@@ -89,8 +89,10 @@ const ctaItems = [
 const words = ["Startups", "Solo Founders", "Recruiters", "Enterprises"];
 
 const backedByLogos = [
-  { url: "/backedby/tie.png", name: "TiE", className: "bg-white p-[3px] object-contain" },
+  { url: "/backedby/tie.png", name: "TiE", className: "bg-white border-[1px] border-gray-400 p-[3px] object-contain" },
   { url: "/backedby/iima.png", name: "IIMA", className: "bg-black p-[4px] object-contain dark:invert" },
+    { url: "/backedby/dhandho.png", name: "Dhandho Fellowship", className: "bg-white border-[1px] border-gray-400  p-[4px] object-contain" },
+
 ];
 
 export function HeroSection() {
@@ -198,13 +200,13 @@ export function HeroSection() {
       </div>
 
       <h1
-        className="relative z-10 font-[540] font-denton text-foreground text-[32px] sm:text-[48px] md:text-[64px] lg:text-[72px] leading-[1.05] flex items-center justify-center whitespace-nowrap overflow-visible"
+        className="relative z-10 font-[540] font-denton text-foreground text-[32px] sm:text-[48px] md:text-[64px] lg:text-[72px] leading-[1.1] flex items-center justify-center whitespace-nowrap overflow-visible px-4"
         style={{ fontVariationSettings: "'wdth' 100" }}
       >
         <span>The Hiring OS for&nbsp;</span>
-          <LineShadowText shadowColor={resolvedTheme === "dark" ? "#fff" : "#000"} className="text-primary inline-block text-left w-[160px] sm:w-[240px] md:w-[320px] lg:w-[360px]">
+        <LineShadowText shadowColor={mounted && resolvedTheme === "dark" ? "#fff" : "#000"} className="text-primary inline-block text-left w-[160px] sm:w-[240px] md:w-[320px] lg:w-[360px]">
           {text}
-          </LineShadowText>
+        </LineShadowText>
       </h1>
 
       <p className="relative z-10 mt-6 text-[18px] md:text-[20px] text-muted-foreground text-center max-w-[700px] leading-relaxed px-6 font-normal text-balance">
