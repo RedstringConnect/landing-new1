@@ -45,7 +45,9 @@ export default function PlaybooksPage() {
   const others = playbooks.filter(p => p.id !== featured?.id);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="relative min-h-screen flex flex-col">
+      {/* Framing Border */}
+      <div className="pointer-events-none absolute inset-x-0 top-16 h-px w-full bg-border z-10" />
       <Navbar />
       <main className="flex-1 w-full max-w-7xl mx-auto px-6 py-32">
         {/* Header */}
@@ -94,15 +96,16 @@ export default function PlaybooksPage() {
         )}
 
         {/* All Playbooks Grid */}
-        <div>
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold">All Resources</h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {others.length > 0 ? (
+          <div>
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-2xl font-bold">All Resources</h2>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {others.map(playbook => (
               <Link href={playbook.link} key={playbook.id} className="group flex flex-col bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/50 transition-all hover:shadow-lg hover:-translate-y-1 duration-300">
-                <div className="relative w-full aspect-[4/3] overflow-hidden border-b border-border/50">
+                <div className="relative w-full aspect-4/3 overflow-hidden border-b border-border/50">
                   <Image 
                     src={playbook.imageUrl} 
                     alt={playbook.title} 
@@ -131,6 +134,12 @@ export default function PlaybooksPage() {
             ))}
           </div>
         </div>
+        ) : !featured && (
+          <div className="text-center py-20 text-muted-foreground bg-card border border-border rounded-2xl">
+            <h3 className="text-xl font-bold mb-2">Check back soon!</h3>
+            <p>We are working on some amazing playbooks and resources for you.</p>
+          </div>
+        )}
 
       </main>
       <Footer />

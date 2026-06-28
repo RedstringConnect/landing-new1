@@ -5,6 +5,13 @@ import { z } from "zod";
 import { motion, AnimatePresence } from "motion/react";
 import { Lock, X, ChevronDown } from "lucide-react";
 import { useTheme } from "next-themes";
+import { Loader2 } from "lucide-react";
+import { playbookService } from "@/lib/services/playbookService";
+import { setPlaybookData } from "@/lib/store/playbookStore";
+import type { HiringPlaybookInput } from "@/types/hiring-playbook";
+import { hiringPlannerService } from "@/lib/services/hiringPlannerService";
+import { setHiringPlannerData } from "@/lib/store/hiringPlannerStore";
+import type { HiringPlannerInput, HiringPlannerCurrentStatus } from "@/types/hiring-planner";
 import {
   Drawer,
   DrawerClose,
@@ -164,6 +171,7 @@ export function ToolHero({ slug, meta, form }: ToolHeroProps) {
   
   const [email, setEmail] = useState("");
   const [hasGenerated, setHasGenerated] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -185,7 +193,7 @@ export function ToolHero({ slug, meta, form }: ToolHeroProps) {
     if (errors[name]) setErrors(prev => ({ ...prev, [name]: "" }));
   };
 
-  const handleGenerate = () => {
+  const handleGenerate = async () => {
     const newErrors: Record<string, string> = {};
     form.rows.flat().forEach(f => {
       if (!formState[f.name]) {
@@ -193,11 +201,68 @@ export function ToolHero({ slug, meta, form }: ToolHeroProps) {
       }
     });
 
-    if (Object.keys(newErrors).length === 0) {
-      setErrors({});
-      setHasGenerated(true);
-    } else {
+    if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
+
+    if (slug === "runway-to-roi") {
+      setIsGenerating(true);
+      try {
+        const payload: HiringPlannerInput = {
+          currentStatus: formState.currentStatus as HiringPlannerCurrentStatus,
+          primaryGoal: formState.goal,
+          totalBudgetAllocation: `${formState.budget} ${unitState.budget}`
+        };
+        
+        const res = await hiringPlannerService.generatePlaybook(payload);
+        
+        if (res.roadmap) {
+          setHiringPlannerData({
+            input: res.input,
+            roadmap: res.roadmap
+          });
+          
+          const params = new URLSearchParams();
+          params.append("tool", slug);
+          router.push(`/tools/thankyou?${params.toString()}`);
+        }
+      } catch (error) {
+        console.error("Failed to generate planner", error);
+        setIsGenerating(false);
+      }
+    } else if (slug === "hiring-playbook-generator") {
+      setIsGenerating(true);
+      try {
+        const payload: HiringPlaybookInput = {
+          companyName: formState.companyName || "",
+          industry: formState.industry || "",
+          businessType: formState.businessType || "",
+          roleCategory: formState.roleCategory || "",
+          specificRole: formState.specificRole || "",
+          seniorityLevel: formState.seniorityLevel || ""
+        };
+        
+        const res = await playbookService.generatePlaybook(payload);
+        
+        if (res.playbook) {
+          setPlaybookData({
+            input: res.input,
+            playbook: res.playbook
+          });
+          
+          const params = new URLSearchParams();
+          params.append("tool", slug);
+          router.push(`/tools/thankyou?${params.toString()}`);
+        }
+      } catch (error) {
+        console.error("Failed to generate playbook", error);
+        setIsGenerating(false);
+      }
+    } else {
+      setHasGenerated(true);
     }
   };
 
@@ -373,8 +438,8 @@ export function ToolHero({ slug, meta, form }: ToolHeroProps) {
               })}
 
               <div className="bg-secondary/10 rounded-b-3xl lg:rounded-b-3xl">
-                <motion.button onClick={handleGenerate} whileTap={{ scale: 0.99, translateY: 2 }} className="w-full h-[56px] rounded-b-3xl lg:rounded-b-3xl bg-foreground text-background text-[15px] font-medium flex items-center justify-center gap-2 hover:bg-foreground/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed group">
-                  {form.buttonText}
+                <motion.button onClick={handleGenerate} disabled={isGenerating} whileTap={{ scale: 0.99, translateY: 2 }} className="w-full h-[56px] rounded-b-3xl lg:rounded-b-3xl bg-foreground text-background text-[15px] font-medium flex items-center justify-center gap-2 hover:bg-foreground/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed group">
+                  {isGenerating ? <Loader2 className="w-5 h-5 animate-spin" /> : form.buttonText}
                 </motion.button>
               </div>
 

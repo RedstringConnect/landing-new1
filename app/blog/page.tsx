@@ -9,7 +9,9 @@ export default async function BlogPage() {
   const blogs = getAllBlogs();
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="relative min-h-screen flex flex-col">
+      {/* Framing Border */}
+      <div className="pointer-events-none absolute inset-x-0 top-16 h-px w-full bg-border z-10" />
       <Navbar />
       <main className="flex-1 flex flex-col items-center py-24 px-6 w-full max-w-7xl mx-auto">
         <div className="text-center mb-16">

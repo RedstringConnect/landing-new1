@@ -73,7 +73,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const recommendedBlogs = allBlogs.filter((b) => b.slug !== slug).slice(0, 3);
 
   return (
-    <div className="min-h-screen flex flex-col pb-24">
+    <div className="relative min-h-screen flex flex-col pb-24">
+      {/* Framing Border */}
+      <div className="pointer-events-none absolute inset-x-0 top-16 h-px w-full bg-border z-10" />
       <Navbar />
       {/* Force hot reload */}
       <main className="flex-1 w-full max-w-6xl mx-auto py-32 px-6 relative">
