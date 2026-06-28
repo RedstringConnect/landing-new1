@@ -5,9 +5,39 @@ import { getBlogBySlug, getBlogSlugs, getAllBlogs } from '@/lib/blog';
 import { notFound } from 'next/navigation';
 import { MarkdownRenderer } from '@/components/markdown-renderer';
 import { FinalCTA } from '@/components/FinalCTA';
+import { BookDemoButton } from '@/components/ui/book-demo-button';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FloatingTOC } from '@/components/FloatingTOC';
+import { DotFlow } from "@/components/ui/dot-flow";
+import { ctaItems } from "@/components/HeroSection";
+import { Check } from "lucide-react";
+import type { Metadata } from "next";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const blog = getBlogBySlug(slug);
+  if (!blog) return {};
+  return {
+    title: `${blog.frontmatter.title} | Redstring`,
+    description: blog.frontmatter.excerpt,
+    openGraph: {
+      title: blog.frontmatter.title,
+      description: blog.frontmatter.excerpt,
+      url: `/blog/${slug}`,
+      type: "article",
+      publishedTime: blog.frontmatter.date,
+      authors: [blog.frontmatter.author],
+      images: blog.frontmatter.imageUrl ? [{ url: blog.frontmatter.imageUrl }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: blog.frontmatter.title,
+      description: blog.frontmatter.excerpt,
+      images: blog.frontmatter.imageUrl ? [blog.frontmatter.imageUrl] : [],
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const slugs = getBlogSlugs();
@@ -68,13 +98,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           )}
           
           {blog.frontmatter.imageUrl && (
-            <div className="relative w-full h-[300px] md:h-[500px] mt-8 rounded-3xl overflow-hidden shadow-lg border border-border">
+            <div className="relative w-full h-[300px] md:h-[500px] mt-8 rounded-3xl overflow-hidden shadow-sm border border-border">
               <Image 
                 src={blog.frontmatter.imageUrl} 
                 alt={blog.frontmatter.title} 
                 fill 
                 className="object-cover"
                 priority
+                unoptimized={blog.frontmatter.imageUrl.startsWith('/api')}
               />
             </div>
           )}
@@ -92,23 +123,24 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="hidden lg:block lg:col-span-4">
             <div className="sticky top-32 p-8 bg-card rounded-[2rem] border border-border flex flex-col items-start shadow-sm">
               <h3 className="font-semibold text-2xl mb-4 font-denton leading-tight">
-                Want to hire 10x faster?
+                Want to hire <br/> <span className="text-primary">10x faster?</span>
               </h3>
-              <p className="text-muted-foreground text-[15px] leading-relaxed mb-8">
-                Eliminate the manual effort in hiring by removing sheets, email tools and organise the data. Intresting?
+              <p className="text-muted-foreground text-[15px] leading-relaxed mb-8" style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}>
+                Eliminate the manual effort in hiring by removing sheets, email tools and organise the data. Interesting?
               </p>
               
-              <Link href="https://loopx.redstring.co.in" className="w-full text-center px-6 py-4 bg-background border border-border text-foreground rounded-2xl font-medium hover:bg-muted transition-colors mb-8 shadow-sm">
-                Try LoopX
-              </Link>
+              <div className="flex flex-col items-center gap-4 w-full mb-8">
+                <DotFlow items={ctaItems} href="https://loopx.redstring.co.in" />
+                <BookDemoButton variant="secondary" size="md" className="w-full" />
+              </div>
               
               <div className="flex items-center justify-between w-full text-xs text-muted-foreground font-medium px-1">
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full border border-muted-foreground flex items-center justify-center shrink-0"></div>
+                <div className="flex items-center gap-1.5">
+                  <Check className="w-4 h-4 text-primary" />
                   <span>For free</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full border border-muted-foreground flex items-center justify-center shrink-0"></div>
+                <div className="flex items-center gap-1.5">
+                  <Check className="w-4 h-4 text-primary" />
                   <span>No credit card</span>
                 </div>
               </div>

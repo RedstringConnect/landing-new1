@@ -40,7 +40,7 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section className="py-[120px] container mx-auto flex flex-col items-center">
+    <section id="faq" className="py-[120px] container mx-auto flex flex-col items-center">
       <h2
         className="font-[540] font-denton text-foreground text-[28px] md:text-[36px] lg:text-[48px] text-center mb-[48px] max-w-[700px] leading-[1.15]"
         style={{ fontVariationSettings: "'wdth' 100" }}

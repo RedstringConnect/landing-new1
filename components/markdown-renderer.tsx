@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
 
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -12,7 +13,7 @@ import { LinkPreview } from './LinkPreview';
 
 const Mermaid = ({ chart }: { chart: string }) => {
   const [svg, setSvg] = useState<string>('');
-  const [id] = useState(`mermaid-${Math.random().toString(36).substr(2, 9)}`);
+  const [id] = useState(() => `mermaid-${Math.random().toString(36).substr(2, 9)}`);
 
   useEffect(() => {
     const renderChart = async () => {
@@ -47,7 +48,7 @@ const components = {
     return <h3 id={id} className="scroll-m-20 text-2xl font-semibold tracking-tight mt-8 mb-4" {...props}>{children}</h3>;
   },
   h4: ({ children, ...props }: any) => <h4 className="scroll-m-20 text-xl font-semibold tracking-tight mt-8 mb-4" {...props}>{children}</h4>,
-  p: ({ children, ...props }: any) => <p className="leading-7 [&:not(:first-child)]:mt-6" {...props}>{children}</p>,
+  p: ({ children, ...props }: any) => <p className="leading-7 not-first:mt-6" {...props}>{children}</p>,
   blockquote: ({ children, ...props }: any) => <blockquote className="mt-6 border-l-2 pl-6 italic text-muted-foreground" {...props}>{children}</blockquote>,
   ul: ({ children, ...props }: any) => <ul className="my-6 ml-6 list-disc [&>li]:mt-2" {...props}>{children}</ul>,
   ol: ({ children, ...props }: any) => <ol className="my-6 ml-6 list-decimal [&>li]:mt-2" {...props}>{children}</ol>,
@@ -63,8 +64,8 @@ const components = {
     </div>
   ),
   tr: ({ children, ...props }: any) => <tr className="m-0 border-t p-0 even:bg-muted" {...props}>{children}</tr>,
-  th: ({ children, ...props }: any) => <th className="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right" {...props}>{children}</th>,
-  td: ({ children, ...props }: any) => <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right" {...props}>{children}</td>,
+  th: ({ children, ...props }: any) => <th className="border px-4 py-2 text-left font-bold [[align=center]]:text-center [[align=right]]:text-right" {...props}>{children}</th>,
+  td: ({ children, ...props }: any) => <td className="border px-4 py-2 text-left [[align=center]]:text-center [[align=right]]:text-right" {...props}>{children}</td>,
   img: (props: any) => {
     return (
       <img
@@ -74,12 +75,28 @@ const components = {
       />
     );
   },
-  code: ({ node, className, children, ...props }: any) => {
+  pre: ({ children, ...props }: any) => (
+    <pre className="mb-4 mt-6 overflow-x-auto rounded-md bg-gray-100 dark:bg-gray-900 py-4 px-4 font-mono text-sm text-gray-900 dark:text-gray-100" {...props}>
+      {children}
+    </pre>
+  ),
+  code: ({ className, children, ...props }: any) => {
     const match = /language-(\w+)/.exec(className || '');
     const isMermaid = match && match[1] === 'mermaid';
     
     if (isMermaid) {
       return <Mermaid chart={String(children).replace(/\n$/, '')} />;
+    }
+    
+    // If it has a language match or isn't inline, don't apply the inline padding so it looks good inside pre
+    const isInline = !match && !className;
+    
+    if (isInline) {
+      return (
+        <code className="relative rounded-md bg-gray-100 dark:bg-gray-900 px-[0.4rem] py-[0.2rem] font-mono text-sm text-gray-900 dark:text-gray-100" {...props}>
+          {children}
+        </code>
+      );
     }
     
     return (

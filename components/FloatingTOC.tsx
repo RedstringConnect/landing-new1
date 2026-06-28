@@ -215,7 +215,15 @@ export function FloatingTOC({ headings }: FloatingTOCProps) {
                     <motion.li key={i} variants={itemVariants} className={heading.level === 3 ? "ml-4" : ""}>
                       <a
                         href={`#${heading.id}`}
-                        onClick={() => setIsExpanded(false)}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setIsExpanded(false);
+                          const el = document.getElementById(heading.id);
+                          if (el) {
+                            const y = el.getBoundingClientRect().top + window.scrollY - 120; // 120px offset for header
+                            window.scrollTo({ top: y, behavior: 'smooth' });
+                          }
+                        }}
                         className={`block transition-colors ${
                           activeId === heading.id 
                             ? "text-primary font-medium" 

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { FeatureScreen1 } from "./FeatureScreen1";
 import { ArrowRightIcon } from "./ui/icons";
 
@@ -43,13 +44,15 @@ export function MeetLoopX() {
           ))}
         </div>
 
-        <a
-          href="#"
+        <Link
+          href="https://loopx.redstring.co.in"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground text-[14px] font-[500] hover:bg-primary/90 transition-colors w-fit shadow-md hover:shadow-lg"
           style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
         >
           Explore LoopX <ArrowRightIcon/>
-        </a>
+        </Link>
       </div>
 
       <div className="flex-1 w-full max-w-[720px]">

@@ -3,11 +3,33 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowRightIcon } from "@/components/ui/icons";
-import toolsData from "@/content/tools.json";
+const staticTools = [
+  {
+    slug: "hiring-planner",
+    meta: {
+      title: "Hiring Planner",
+      description: "Plan your headcount and budget with our intelligent forecasting tool."
+    }
+  },
+  {
+    slug: "interview-questions",
+    meta: {
+      title: "Interview Questions Generator",
+      description: "Generate tailored, behavioral interview questions for any role."
+    }
+  },
+  {
+    slug: "job-description",
+    meta: {
+      title: "Job Description Builder",
+      description: "Create inclusive and compelling job descriptions in minutes."
+    }
+  }
+];
 
 export function LatestTools({ currentTool }: { currentTool?: string | null }) {
   // Filter out the current tool and take the first few
-  const otherTools = toolsData.filter(tool => tool.slug !== currentTool);
+  const otherTools = staticTools.filter(tool => tool.slug !== currentTool);
 
   if (otherTools.length === 0) return null;
 

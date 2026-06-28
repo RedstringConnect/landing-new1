@@ -1,6 +1,17 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
+
+export const metadata: Metadata = {
+  title: "Playbooks | Redstring",
+  description: "Strategic hiring playbooks and guides from Redstring — build better teams with data-driven hiring frameworks.",
+  openGraph: {
+    title: "Playbooks | Redstring",
+    description: "Strategic hiring playbooks and guides from Redstring.",
+    url: "/playbooks",
+  },
+};
 import fs from 'fs';
 import path from 'path';
 import Image from 'next/image';

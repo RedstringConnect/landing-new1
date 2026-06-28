@@ -5,6 +5,7 @@ import { useTheme } from "next-themes";
 import { Moon, Sun, Map as MapIcon } from "lucide-react";
 import Link from "next/link";
 import Logo from "@/components/logo";
+import { BookDemoButton } from "@/components/ui/book-demo-button";
 import { motion, AnimatePresence, Variants, useScroll, useMotionValueEvent } from "motion/react";
 import {
   NavigationMenu,
@@ -160,6 +161,7 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
                       href={link.href}
                       className="block py-2 text-[15px] text-foreground hover:text-primary transition-colors"
                       onClick={() => setMobileOpen(false)}
+                      {...(link.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     >
                       {link.label}
                     </Link>
@@ -183,18 +185,24 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
 
   // STANDARD LAYOUT
   return (
-    <motion.nav 
-      layout
-      transition={{ duration: 0.4, ease: "easeInOut" }}
-      className={`z-50 transition-colors duration-300 ${
-        isFloating
-          ? "fixed top-4 inset-x-0 mx-auto w-[95%] max-w-[1280px] bg-background/80 backdrop-blur-xl border border-border rounded-3xl shadow-md"
-          : "absolute top-0 inset-x-0 w-full bg-transparent border-transparent"
-      }`}
-    >
-      <div className={`flex items-center justify-between transition-all duration-300 ${
-        isFloating ? "h-[72px] px-6 lg:px-8" : "h-16 px-6 md:px-20"
-      }`}>
+    <>
+      {/* Invisible spacer to push the page down and align Hero lines correctly */}
+      <div className="relative w-full h-10 pointer-events-none opacity-0" aria-hidden="true" />
+
+      <motion.nav 
+        layout
+        transition={{ duration: 0.4, ease: "easeInOut" }}
+        className={`z-50 transition-colors duration-300 flex flex-col ${
+          isFloating
+            ? "fixed top-4 inset-x-0 mx-auto w-[95%] max-w-[1280px] bg-background/80 backdrop-blur-xl border border-border rounded-[24px] shadow-md"
+            : "absolute top-0 inset-x-0 w-full bg-transparent border-transparent"
+        }`}
+      >
+
+        <div className={`flex items-center justify-between shrink-0 transition-all duration-300 ${
+            isFloating ? "h-[72px] px-6 lg:px-8" : "h-16 px-6 md:px-20"
+          }`}
+        >
         <div className="flex items-center">
           <Link href="/">
             <motion.div layoutId="nav-logo" transition={{ duration: 0.4, ease: "easeInOut" }} className="flex items-center">
@@ -210,6 +218,7 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
               href={link.href}
               className={`text-[15px] px-4 py-2 transition-colors duration-200 text-muted-foreground hover:text-foreground`}
               style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
+              {...(link.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             >
               {link.label}
             </Link>
@@ -280,13 +289,9 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
               {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
           )}
-          <a
-            href="#"
-            className="hidden md:flex items-center px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-[14px] font-medium hover:opacity-90 transition-opacity duration-200 shadow-md shadow-primary/20"
-            style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
-          >
-            Login / Signup
-          </a>
+          <div className="hidden md:block">
+            <BookDemoButton variant="primary" size="sm" />
+          </div>
         </motion.div>
 
         <button
@@ -306,6 +311,21 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
         </button>
       </div>
 
+      {/* Top Banner integrated into Navbar (Bottom) */}
+      <div className={`h-10 flex items-center justify-center text-sm font-medium shrink-0 transition-all duration-300 ${
+          isFloating 
+            ? "w-full px-4 bg-primary/10 text-primary border-t border-border rounded-b-[24px]" 
+            : "self-stretch mx-4 md:mx-16 px-4 bg-primary text-primary-foreground"
+        }`}
+      >
+        <span className="truncate">
+          We were selected by The Founding Co(backed by residency) for their first cohort
+        </span>
+        <Link href="/blog/the-founding.co" className={`ml-3 underline underline-offset-2 font-semibold shrink-0 transition-colors ${isFloating ? "hover:text-primary/80" : "hover:text-primary-foreground/80"}`}>
+          View announcement &rarr;
+        </Link>
+      </div>
+
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -313,8 +333,8 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
             initial="hidden"
             animate="visible"
             exit="hidden"
-            className={`md:hidden overflow-hidden bg-background/95 backdrop-blur-xl border-t border-border rounded-b-2xl absolute left-0 w-full ${
-              isFloating ? "top-[72px]" : "top-16"
+            className={`md:hidden overflow-hidden bg-background/95 backdrop-blur-xl border-t border-border rounded-b-3xl absolute left-0 w-full ${
+              isFloating ? "top-[112px]" : "top-[104px]"
             }`}
           >
             <div className="px-6 pb-6 pt-4">
@@ -339,6 +359,7 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
                       className={`block py-3 text-[15px] border-b border-border text-foreground hover:text-primary transition-colors`}
                       style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
                       onClick={() => setMobileOpen(false)}
+                      {...(link.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     >
                       {link.label}
                     </Link>
@@ -378,12 +399,9 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
                 </motion.div>
 
                 <motion.div variants={itemVariants}>
-                  <a
-                    href="#"
-                    className="mt-6 block w-full text-center px-5 py-3 rounded-xl bg-primary text-primary-foreground text-[15px] font-medium shadow-md shadow-primary/20"
-                  >
-                    Login / Signup
-                  </a>
+                  <div className="mt-6">
+                    <BookDemoButton variant="primary" size="md" className="w-full text-center" />
+                  </div>
                 </motion.div>
               </div>
             </div>
@@ -391,5 +409,6 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
         )}
       </AnimatePresence>
     </motion.nav>
+    </>
   );
 }

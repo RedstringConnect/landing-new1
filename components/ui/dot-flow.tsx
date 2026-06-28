@@ -2,6 +2,7 @@
 "use no memo";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import Link from "next/link";
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -15,9 +16,10 @@ export type DotFlowProps = {
         duration?: number;
         repeatCount?: number;
     }[];
+    href?: string;
 };
 
-export const DotFlow = ({ items }: DotFlowProps) => {
+export const DotFlow = ({ items, href }: DotFlowProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
     const [index, setIndex] = useState(0);
@@ -68,8 +70,8 @@ export const DotFlow = ({ items }: DotFlowProps) => {
     // eslint-disable-next-line
     const next = contextSafe(handleNext);
 
-    return (
-        <div className="flex items-center gap-4 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-4 transition-colors cursor-pointer shadow-lg hover:shadow-xl hover:-translate-y-0.5 duration-300">
+    const content = (
+        <>
             <DotLoader
                 frames={items[index].frames}
                 onComplete={next}
@@ -81,12 +83,29 @@ export const DotFlow = ({ items }: DotFlowProps) => {
             <div ref={containerRef} className="relative overflow-hidden" style={{ width: 'auto', minWidth: '120px' }}>
                 <div 
                     ref={textRef} 
-                    className="inline-block text-[16px] font-[500] whitespace-nowrap text-primary-foreground"
+                    className="inline-block text-[16px] font-medium whitespace-nowrap text-primary-foreground"
                     style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
                 >
                     {items[textIndex].title}
                 </div>
             </div>
-        </div>
+        </>
     );
+
+    const cls = "flex items-center gap-4 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-4 transition-colors cursor-pointer shadow-lg hover:shadow-xl hover:-translate-y-0.5 duration-300";
+
+    if (href) {
+        const isExternal = href.startsWith('http');
+        return (
+            <Link 
+                href={href} 
+                className={cls}
+                {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            >
+                {content}
+            </Link>
+        );
+    }
+
+    return <div className={cls}>{content}</div>;
 };

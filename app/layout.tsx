@@ -5,6 +5,9 @@ import localFont from "next/font/local";
 const InterDisplay = localFont({
   src: "../public/InterVariable.ttf",
   variable: "--font-inter-display",
+  display: "swap",
+  preload: true,
+  fallback: ["system-ui", "sans-serif"],
 });
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.redstring.ai"),

@@ -2,6 +2,7 @@
 import { Suspense, lazy, useState , useEffect} from "react";
 import { useTheme } from "next-themes";
 import { DotFlow } from "@/components/ui/dot-flow";
+import { BookDemoButton } from "@/components/ui/book-demo-button";
 import { ctaItems } from "@/components/HeroSection";
 
 const Dithering = lazy(() => 
@@ -57,14 +58,8 @@ export function FinalCTA() {
           </p>
 
           <div className="mt-12 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-            <DotFlow items={ctaItems} />
-            <a
-              href="#"
-              className="w-full sm:w-auto px-8 py-4 rounded-full bg-secondary border border-border text-foreground text-base font-medium hover:bg-secondary/80 transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 duration-300 flex items-center justify-center text-center"
-              style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
-            >
-              Book a demo
-            </a>
+            <DotFlow items={ctaItems} href="https://loopx.redstring.co.in" />
+            <BookDemoButton variant="secondary" size="md" className="w-full sm:w-auto" />
           </div>
 
           <p className="mt-10 text-sm md:text-base text-muted-foreground max-w-sm leading-relaxed italic font-medium opacity-80">
@@ -74,7 +69,9 @@ export function FinalCTA() {
 
         {/* Right Column / Animation Container */}
         <div className="w-full lg:flex-1 h-[400px] sm:h-[480px] lg:h-[600px] lg:max-w-[480px] rounded-3xl border border-border bg-muted/10 overflow-hidden flex items-center justify-center shadow-inner relative">
-           <p className="text-muted-foreground font-medium text-lg">Some picture/animation</p>
+           <video autoPlay loop muted playsInline className="size-full object-cover">
+             <source src="/hero-demo.mp4" type="video/mp4" />
+           </video>
         </div>
       </div>
     </section>

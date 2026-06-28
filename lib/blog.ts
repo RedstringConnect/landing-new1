@@ -11,7 +11,7 @@ export const BlogSchema = z.object({
   date: z.string(),
   author: z.string(),
   readTime: z.string(),
-  imageUrl: z.string().url().optional(),
+  imageUrl: z.string().optional(),
   tags: z.array(z.string()).optional(),
   featured: z.boolean().default(false),
   isDummy: z.boolean().optional().default(false),

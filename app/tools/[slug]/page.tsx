@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import fs from "fs";
 import path from "path";
 
@@ -9,6 +10,26 @@ import { ToolWhy } from "@/components/tools/ToolWhy";
 import { ToolHow } from "@/components/tools/ToolHow";
 import { ToolFAQ } from "@/components/tools/ToolFAQ";
 import { FinalCTA } from "@/components/FinalCTA";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  try {
+    const filePath = path.join(process.cwd(), "content", "tools.json");
+    const fileContents = await fs.promises.readFile(filePath, "utf8");
+    const tools = JSON.parse(fileContents) as Array<{ slug: string; meta?: { title?: string; description?: string } }>;
+    const tool = tools.find((t) => t.slug === slug);
+    if (tool?.meta) {
+      return {
+        title: tool.meta.title ? `${tool.meta.title} | Redstring` : undefined,
+        description: tool.meta.description,
+      };
+    }
+  } catch {}
+  return {
+    title: `${slug.replace(/-/g, ' ')} | Redstring`,
+    description: `Learn how to optimize your hiring with Redstring's ${slug.replace(/-/g, ' ')} tool.`,
+  };
+}
 
 // Disable caching for this route so we don't need to rebuild when JSON changes during dev
 export const dynamic = "force-dynamic";

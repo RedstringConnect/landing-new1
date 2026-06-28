@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect, Suspense, lazy } from "react";
-import dynamic from "next/dynamic";
+import Link from "next/link";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
@@ -11,6 +11,7 @@ const Dithering = lazy(() =>
 
 import { CompanyMarquee } from "./CompanyMarquee";
 import { DotFlow } from "@/components/ui/dot-flow";
+import { BookDemoButton } from "@/components/ui/book-demo-button";
 import { LineShadowText } from "./ui/line-shadow-text";
 
 const syncing = [
@@ -90,7 +91,7 @@ const words = ["Startups", "Solo Founders", "Recruiters", "Enterprises"];
 
 const backedByLogos = [
   { url: "/backedby/tie.png", name: "TiE", className: "bg-white border-[1px] border-gray-400 p-[3px] object-contain" },
-  { url: "/backedby/iima.png", name: "IIMA", className: "bg-black p-[4px] object-contain dark:invert" },
+  { url: "/backedby/iiml.png", name: "IIML Incubator", className: "bg-black p-[4px] object-contain dark:invert" },
     { url: "/backedby/dhandho.png", name: "Dhandho Fellowship", className: "bg-white border-[1px] border-gray-400  p-[4px] object-contain" },
 
 ];
@@ -214,13 +215,8 @@ export function HeroSection() {
       </p>
 
       <div className="relative z-10 mt-[48px] flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-6">
-        <DotFlow items={ctaItems} />
-        <button
-          className="w-full sm:w-auto px-8 py-4 rounded-full bg-secondary border border-border text-foreground text-[16px] font-medium hover:bg-secondary/80 transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 duration-300"
-          style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
-        >
-          Book a Demo
-        </button>
+        <DotFlow items={ctaItems} href="https://loopx.redstring.co.in" />
+        <BookDemoButton variant="secondary" size="md" className="w-full sm:w-auto" />
       </div>
 
       <div className="w-full mt-12 relative z-10 px-4 md:px-16 overflow-hidden">

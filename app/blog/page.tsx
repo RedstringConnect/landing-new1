@@ -29,6 +29,7 @@ export default async function BlogPage() {
                     alt={blog.frontmatter.title} 
                     fill 
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    unoptimized={blog.frontmatter.imageUrl.startsWith('/api')}
                   />
                 </div>
               )}

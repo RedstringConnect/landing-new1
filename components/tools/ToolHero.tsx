@@ -72,7 +72,7 @@ function CustomDropdown({
         {isOpen && (
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }} className="absolute top-full left-0 right-0 mt-2 z-50">
             <div className="relative w-full rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] overflow-hidden bg-background/80 backdrop-blur-xl border border-border">
-              <div ref={listRef} onScroll={handleScroll} className="w-full max-h-[250px] overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] p-2 flex flex-col gap-0.5">
+              <div ref={listRef} onScroll={handleScroll} className="w-full max-h-[250px] overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] scrollbar-none p-2 flex flex-col gap-0.5">
                 {options.map((opt) => (
                   <button key={opt} onClick={(e) => { e.stopPropagation(); onChange(opt); setIsOpen(false); }} className={`w-full text-left px-4 py-3 text-sm rounded-xl transition-all duration-200 shrink-0 ${value === opt ? "bg-foreground/10 text-foreground font-semibold" : "text-foreground/70 hover:bg-foreground/5 hover:text-foreground font-medium"}`}>
                     {opt}
@@ -169,7 +169,10 @@ export function ToolHero({ slug, meta, form }: ToolHeroProps) {
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
-  useEffect(() => { setMounted(true); }, []);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
   const ditherColor = mounted && resolvedTheme === "dark" ? "#ffffff" : "#000000";
 
   const handleFieldChange = (name: string, val: string) => {
