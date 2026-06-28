@@ -6,7 +6,9 @@ import { useTheme } from "next-themes";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { getHiringPlannerData, clearHiringPlannerData } from "@/lib/store/hiringPlannerStore";
-import { getPlaybookData } from "@/lib/store/playbookStore";
+import type { HiringPlannerSessionData } from "@/lib/store/hiringPlannerStore";
+import { clearPlaybookData, getPlaybookData } from "@/lib/store/playbookStore";
+import type { PlaybookSessionData } from "@/lib/store/playbookStore";
 import { HiringPlannerResult } from "@/components/thankyou/HiringPlannerResult";
 import { HiringPlaybookResult } from "@/components/thankyou/HiringPlaybookResult";
 import { GenericDownloadResult } from "@/components/thankyou/GenericDownloadResult";
@@ -27,26 +29,26 @@ function ThankYouContent() {
   const tool = searchParams.get("tool");
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  
-  const [plannerData, setPlannerData] = useState<any>(null);
-  const [playbookData, setPlaybookData] = useState<any>(null);
-  const [isUnlocked, setIsUnlocked] = useState(() => tool !== "runway-to-roi" && tool !== "hiring-playbook-generator");
+
+  // Read session storage once on mount via lazy initialisers (avoids setState-in-effect lint error)
+  const [plannerData] = useState<HiringPlannerSessionData | null>(() =>
+    typeof window !== "undefined" && tool === "runway-to-roi" ? getHiringPlannerData() : null
+  );
+  const [playbookData] = useState<PlaybookSessionData | null>(() =>
+    typeof window !== "undefined" && tool === "hiring-playbook-generator" ? getPlaybookData() : null
+  );
+
+  const isLockedTool = tool === "runway-to-roi" || tool === "hiring-playbook-generator";
+  const [isUnlocked, setIsUnlocked] = useState(() => !isLockedTool);
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [isUnlocking, setIsUnlocking] = useState(false);
   const [closeWarningCount, setCloseWarningCount] = useState(0);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (tool === "runway-to-roi") {
-        setPlannerData(getHiringPlannerData());
-      } else if (tool === "hiring-playbook-generator") {
-        setPlaybookData(getPlaybookData());
-      }
-    }
     const id = requestAnimationFrame(() => setMounted(true));
     return () => cancelAnimationFrame(id);
-  }, [tool]);
+  }, []);
 
   const handleUnlock = async () => {
     const result = z.string().email("Please enter a valid work email").safeParse(email);
@@ -65,6 +67,9 @@ function ThankYouContent() {
           roadmap: plannerData.roadmap
         });
         clearHiringPlannerData();
+      } else if (tool === "hiring-playbook-generator") {
+        // Playbook is unlocked client-side; clear session data
+        clearPlaybookData();
       }
       setIsUnlocked(true);
     } catch {
@@ -117,10 +122,10 @@ function ThankYouContent() {
         </div>
 
         {/* Lock Drawer */}
-        {tool === "runway-to-roi" && !isUnlocked && (
+        {isLockedTool && !isUnlocked && (
           <Drawer open={true} onOpenChange={handleDrawerOpenChange}>
             <DrawerContent className="mx-auto w-[calc(100%-2rem)] max-w-[800px] rounded-t-[24px]! md:rounded-t-[32px]! bg-background/95 backdrop-blur-xl border border-border shadow-2xl p-0 outline-none">
-               <DrawerTitle title="Unlock Your Hiring Blueprint" className="sr-only"/>
+               <DrawerTitle title="Unlock Your Result" className="sr-only"/>
                <div className="relative p-6 md:p-8 flex flex-col items-center text-center w-full">
                   
                   {closeWarningCount > 0 && (
@@ -134,10 +139,13 @@ function ThankYouContent() {
                   </div>
                   
                   <h3 className="text-[20px] md:text-[24px] font-semibold text-foreground tracking-tight mb-2">
-                    Your AI Roadmap is Ready
+                    {tool === "hiring-playbook-generator" ? "Your Hiring Playbook is Ready" : "Your AI Roadmap is Ready"}
                   </h3>
                   <p className="text-[14px] md:text-[15px] text-muted-foreground leading-relaxed max-w-[400px] mb-6">
-                    Enter your work email below to unlock your custom capital split, hiring roster, and budget recommendations.
+                    {tool === "hiring-playbook-generator"
+                      ? "Enter your work email below to unlock your custom hiring playbook with interview stages, scorecards, and question banks."
+                      : "Enter your work email below to unlock your custom capital split, hiring roster, and budget recommendations."
+                    }
                   </p>
                   
                   <div className="flex flex-col sm:flex-row w-full max-w-[500px] gap-3">
@@ -156,7 +164,7 @@ function ThankYouContent() {
                       disabled={isUnlocking}
                       className="shrink-0 bg-foreground text-background px-8 py-3.5 rounded-full text-[14px] font-medium hover:bg-foreground/90 hover:-translate-y-0.5 transition-all shadow-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                     >
-                      {isUnlocking ? <Loader2 className="w-4 h-4 animate-spin" /> : "Unlock Report"}
+                      {isUnlocking ? <Loader2 className="w-4 h-4 animate-spin" /> : tool === "hiring-playbook-generator" ? "Unlock Playbook" : "Unlock Report"}
                     </button>
                   </div>
                </div>
