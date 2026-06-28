@@ -211,7 +211,7 @@ export function HeroSection() {
       </h1>
 
       <p className="relative z-10 mt-6 text-[18px] md:text-[20px] text-muted-foreground text-center max-w-[700px] leading-relaxed px-6 font-normal text-balance">
-        We provide premier hiring services to top companies, sourcing the absolute best talent from our own cherry-picked candidates.
+       Building your hiring brain with human intelligence 
       </p>
 
       <div className="relative z-10 mt-[48px] flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-6">
