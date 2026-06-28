@@ -7,12 +7,8 @@
     "date": "2026-06-28T00:00:00Z",
     "author": "Srijan Reddy",
     "readTime": "2 min read",
-    "imageUrl": "/api/og?slug=the-founding.co",
-    "tags": [
-      "Company Update",
-      "Residency",
-      "Founding Co"
-    ],
+    "imageUrl": "/banner.png",
+    "tags": ["Company Update", "Residency", "Founding Co"],
     "featured": true,
     "isDummy": false
   }

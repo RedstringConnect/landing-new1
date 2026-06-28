@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Moon, Sun, Map as MapIcon } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "@/components/logo";
 import { BookDemoButton } from "@/components/ui/book-demo-button";
 import { motion, AnimatePresence, Variants, useScroll, useMotionValueEvent } from "motion/react";
@@ -71,6 +72,8 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
   const [mounted, setMounted] = useState(false);
   const [isFloating, setIsFloating] = useState(false);
   const { scrollY } = useScroll();
+  const pathname = usePathname();
+  const hideAnnouncement = pathname?.startsWith('/blog') || pathname?.startsWith('/playbook') || pathname?.startsWith('/guide');
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > 64) {
@@ -312,19 +315,21 @@ export function Navbar({ mapLayout = false }: NavbarProps) {
       </div>
 
       {/* Top Banner integrated into Navbar (Bottom) */}
-      <div className={`h-10 flex items-center justify-center text-sm font-medium shrink-0 transition-all duration-300 ${
-          isFloating 
-            ? "w-full px-4 bg-primary/10 text-primary border-t border-border rounded-b-[24px]" 
-            : "self-stretch mx-4 md:mx-16 px-4 bg-primary text-primary-foreground"
-        }`}
-      >
-        <span className="truncate">
-          We were selected by The Founding Co(backed by residency) for their first cohort
-        </span>
-        <Link href="/blog/the-founding.co" className={`ml-3 underline underline-offset-2 font-semibold shrink-0 transition-colors ${isFloating ? "hover:text-primary/80" : "hover:text-primary-foreground/80"}`}>
-          View announcement &rarr;
-        </Link>
-      </div>
+      {!hideAnnouncement && (
+        <div className={`h-10 flex items-center justify-center text-sm font-medium shrink-0 transition-all duration-300 ${
+            isFloating 
+              ? "w-full px-4 bg-primary/10 text-primary border-t border-border rounded-b-[24px]" 
+              : "self-stretch mx-4 md:mx-16 px-4 bg-primary text-primary-foreground"
+          }`}
+        >
+          <span className="truncate">
+            We were selected by The Founding Co(backed by residency) for their first cohort
+          </span>
+          <Link href="/blog/the-founding.co" className={`ml-3 underline underline-offset-2 font-semibold shrink-0 transition-colors ${isFloating ? "hover:text-primary/80" : "hover:text-primary-foreground/80"}`}>
+            View announcement &rarr;
+          </Link>
+        </div>
+      )}
 
       <AnimatePresence>
         {mobileOpen && (
