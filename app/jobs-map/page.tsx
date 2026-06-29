@@ -3,7 +3,7 @@ import { Navbar } from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "Jobs Map | Redstring",
-  description: "See hiring hotspots in real-time with Redstring's interactive jobs map — powered by Ola Maps.",
+  description: "See hiring hotspots in real-time with Redstring's interactive jobs map — powered by Google Maps.",
 };
 import { OlaMap } from "@/components/jobs-map/OlaMap";
 import { MapPin } from "lucide-react";
