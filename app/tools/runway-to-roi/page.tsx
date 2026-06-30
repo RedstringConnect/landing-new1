@@ -50,9 +50,9 @@ export default function RunwayToRoiPage() {
   const howSection = {
     title: "How it works",
     steps: [
-      { step: "01", title: "Define Roles", description: "Input your required roles, seniority levels, and target start dates into the planner.", icon: "sliders" },
-      { step: "02", title: "Calculate Needs", description: "Our AI calculates required pipeline size, budget, and estimated time to hire.", icon: "math" },
-      { step: "03", title: "Get Result", description: "Export the plan or seamlessly integrate it with your ATS to begin sourcing.", icon: "download" }
+      { step: "01", title: "Tell us your requirements", description: "Answer a few simple questions about your company, role, or hiring goals. The more context you provide, the better the output.", icon: "sliders" },
+      { step: "02", title: "Get Actionable Recommendations", description: "Receive a report that's practical, not generic.", icon: "math" },
+      { step: "03", title: "Put it into action", description: "Take the insights and start building your lean hiring roadmap immediately.", icon: "download" }
     ]
   };
 

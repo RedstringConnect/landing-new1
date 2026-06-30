@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import { DotFlow } from "@/components/ui/dot-flow";
 import { BookDemoButton } from "@/components/ui/book-demo-button";
 import { ctaItems } from "@/components/HeroSection";
+import { PhoneAnimation } from "@/components/ui/PhoneAnimation";
 
 const Dithering = lazy(() => 
   import("@paper-design/shaders-react").then((mod) => ({ default: mod.Dithering }))
@@ -68,10 +69,8 @@ export function FinalCTA() {
         </div>
 
         {/* Right Column / Animation Container */}
-        <div className="w-full lg:flex-1 h-[400px] sm:h-[480px] lg:h-[600px] lg:max-w-[480px] rounded-3xl border border-border bg-muted/10 overflow-hidden flex items-center justify-center shadow-inner relative">
-           <video autoPlay loop muted playsInline className="size-full object-cover">
-             <source src="/hero-demo.mp4" type="video/mp4" />
-           </video>
+        <div className="w-full lg:flex-1 lg:max-w-[480px]">
+          <PhoneAnimation />
         </div>
       </div>
     </section>

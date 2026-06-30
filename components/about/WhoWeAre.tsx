@@ -9,25 +9,22 @@ const ImageDithering = lazy(() =>
 
 const values = [
   {
-    title: "AI-First",
-    description: "Every decision, every match, every workflow is powered by intelligent algorithms that learn and improve continuously. We process millions of data points to find the perfect synergy between candidate potential and company needs.",
+    title: "Human-First Automation",
+    description: "We automate repetitive tasks while keeping people at the center of every important decision.",
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=400&auto=format&fit=crop",
     gradient: "from-primary/20 to-transparent",
-    // className: "md:col-span-2",
   },
   {
-    title: "Radical Transparency",
-    description: "No black boxes. Understand exactly how candidates are matched, why they're recommended, and where to optimize. We provide unparalleled visibility into the sourcing pipeline so you can hire with total confidence.",
+    title: "Built Around Real Problems",
+    description: "Every tool starts with a challenge founders and hiring teams face every day \u2014 not with technology for technology\u2019s sake.",
     image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=400&auto=format&fit=crop",
     gradient: "from-primary/20 to-transparent",
-    // className: "md:col-span-3",
   },
   {
-    title: "Human-Centered",
-    description: "Technology should amplify human judgment, not replace it. We build tools that empower recruiters.",
+    title: "Engineered to Grow With You",
+    description: "From your first hire to your hundredth, Redstring helps you build hiring systems that scale alongside your business.",
     image: "https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?q=80&w=400&auto=format&fit=crop",
     gradient: "from-primary/20 to-transparent",
-    // className: "md:col-span-1",
   },
 ];
 
@@ -61,7 +58,7 @@ export function WhoWeAre() {
         className="font-[540] font-denton text-foreground text-[36px] md:text-[44px] lg:text-[48px] text-center mb-[80px] w-full"
         style={{ fontVariationSettings: "'wdth' 100" }}
       >
-        Who We Are
+        Why Redstring
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">

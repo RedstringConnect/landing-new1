@@ -68,9 +68,9 @@ export default function HiringPlaybookGeneratorPage() {
   const howSection = {
     title: "How it works",
     steps: [
-      { step: "01", title: "Define the Role", description: "Input the specific role, seniority, and industry context.", icon: "sliders" },
-      { step: "02", title: "Generate Blueprint", description: "Our AI builds a custom interview plan, scorecard, and question bank.", icon: "math" },
-      { step: "03", title: "Start Hiring", description: "Export the playbook to your ATS and align your interview panel.", icon: "download" }
+      { step: "01", title: "Tell Us About the Role", description: "Share a few details about the position you're hiring for, your company, and what you're looking for in an ideal candidate.", icon: "sliders" },
+      { step: "02", title: "We Build Your Playbook", description: "Our AI analyzes your inputs and generates a tailored hiring playbook, including interview stages, evaluation criteria, interview questions, and hiring recommendations.", icon: "math" },
+      { step: "03", title: "Download and start using", description: "Review your personalized playbook, download it instantly, and use it to run structured, consistent, and confident interviews.", icon: "download" }
     ]
   };
 

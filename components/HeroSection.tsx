@@ -89,13 +89,6 @@ export const ctaItems = [
 
 const words = ["Startups", "Solo Founders", "Recruiters", "Enterprises"];
 
-const backedByLogos = [
-  { url: "/backedby/tie.png", name: "TiE", className: "bg-white border-[1px] border-gray-400 p-[3px] object-contain" },
-  { url: "/backedby/iiml.png", name: "IIML Incubator", className: "bg-black p-[4px] object-contain dark:invert" },
-    { url: "/backedby/dhandho.png", name: "Dhandho Fellowship", className: "bg-white border-[1px] border-gray-400  p-[4px] object-contain" },
-
-];
-
 export function HeroSection() {
   const [isHovered, setIsHovered] = useState(false);
   const { resolvedTheme } = useTheme();
@@ -148,7 +141,7 @@ export function HeroSection() {
 
   return (
     <section 
-      className="relative pt-[240px] flex flex-col items-center overflow-hidden" 
+      className="relative pt-[240px] flex flex-col items-center overflow-x-hidden" 
       id="home"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -175,28 +168,18 @@ export function HeroSection() {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px w-full bg-border z-10" />
 
       <div className="relative z-10 flex flex-col items-center gap-[12px] mb-[24px]">
-        <div className="flex items-center gap-[10px] px-4 py-2">
-          <span className="text-[16px] text-muted-foreground" style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}>
+        <div className="flex items-center gap-2.5 px-4 py-2">
+          <span className="text-[18px] text-muted-foreground" style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}>
             backed by
           </span>
-          <div className="flex -space-x-2">
-            {backedByLogos.map((logo, i) => (
-              <div key={i} className="relative group cursor-pointer">
-                <Image
-                  src={logo.url}
-                  width={50}
-                  height={50}
-                  alt={logo.name}
-                  priority={true}
-                  className={`size-10 rounded-full border-2 border-background relative z-10 transition-transform duration-200 group-hover:scale-110 group-hover:z-20 ${logo.className}`}
-                />
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-foreground text-background text-[12px] font-medium rounded-md shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap pointer-events-none z-50 translate-y-1 group-hover:translate-y-0">
-                  {logo.name}
-                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-foreground" />
-                </div>
-              </div>
-            ))}
-          </div>
+          <Image
+            src="/logos/the founding co.svg"
+            alt="The Founding Co"
+            width={120}
+            height={28}
+            className="h-[22px] w-auto"
+            priority={true}
+          />
         </div>
       </div>
 
@@ -219,7 +202,7 @@ export function HeroSection() {
         <BookDemoButton variant="secondary" size="md" className="w-full sm:w-auto" />
       </div>
 
-      <div className="w-full mt-12 relative z-10 px-4 md:px-16 overflow-hidden">
+      <div className="w-full mt-12 relative z-10 px-4 md:px-16">
         <CompanyMarquee />
       </div>
     </section>

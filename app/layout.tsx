@@ -10,13 +10,13 @@ const InterDisplay = localFont({
   fallback: ["system-ui", "sans-serif"],
 });
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.redstring.ai"),
+  metadataBase: new URL("https://www.redstring.co.in"),
   title: "Redstring — The Hiring OS",
   description: "AI-powered hiring operating system that automates candidate sourcing, screening, and interview scheduling.",
   openGraph: {
     title: "Redstring — The Hiring OS",
     description: "AI-powered hiring operating system that automates candidate sourcing, screening, and interview scheduling.",
-    url: "https://www.redstring.ai",
+    url: "https://www.redstring.co.in",
     siteName: "Redstring",
     images: [
       {
@@ -47,9 +47,9 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://www.redstring.ai",
+    canonical: "https://www.redstring.co.in",
     languages: {
-      "en-US": "https://www.redstring.ai/en-US",
+      "en-US": "https://www.redstring.co.in/en-US",
     },
   },
 };
@@ -65,7 +65,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Redstring",
-    url: "https://www.redstring.ai",
+    url: "https://www.redstring.co.in",
     description: "AI-powered hiring operating system that automates candidate sourcing, screening, and interview scheduling.",
   };
 

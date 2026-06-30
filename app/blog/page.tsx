@@ -15,7 +15,7 @@ export default async function BlogPage() {
       <Navbar />
       <main className="flex-1 flex flex-col items-center py-24 px-6 w-full max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-denton font-medium mb-6">Our Blog</h1>
+          <h1 className="text-4xl md:text-5xl font-denton font-medium mb-6">Hiring Notes from Redstring</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Discover the latest insights, news, and updates from our team.
           </p>
