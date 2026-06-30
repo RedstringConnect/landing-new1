@@ -159,7 +159,7 @@ function NotificationStack({
                         ease: "linear",
                       }
                 }
-                className={`absolute inset-x-0 h-[80px] rounded-4xl p-2.5 sm:p-4 flex items-center gap-2 sm:gap-2.5 overflow-hidden border bg-black/[0.04] ${
+                className={`absolute inset-x-0 h-[80px] rounded-4xl p-2.5 sm:p-4 flex items-center gap-2 sm:gap-2.5 overflow-hidden border bg-black/[0.07] ${
                   isDark
                     ? `${isHovered ? "border-white/20" : "border-white/[0.08]"}`
                     : `${isHovered ? "border-black/20" : "border-black/[0.06]"} shadow-lg`
