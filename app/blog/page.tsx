@@ -1,9 +1,18 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getAllBlogs } from '@/lib/blog';
+
+export const metadata: Metadata = {
+  title: 'Blog | Redstring',
+  description: 'Hiring insights, recruitment strategies, and startup hiring tips from the Redstring team.',
+  alternates: {
+    canonical: 'https://www.redstring.co.in/blog',
+  },
+};
 
 export default async function BlogPage() {
   const blogs = getAllBlogs();

@@ -10,8 +10,8 @@ Redstring is an AI-powered hiring operating system that automates candidate sour
 - **Interview Scheduling**: Sync calendars and automate meeting setups.
 
 ## Links
-- Homepage: https://www.redstring.ai
-- Dashboard: https://app.redstring.ai
+- Homepage: https://www.redstring.co.in
+- Dashboard: https://app.redstring.co.in
 
 ## Stack
 This project is built using:

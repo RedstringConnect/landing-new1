@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Redstring - Home',
-  description: 'Welcome to Redstring.',
+  title: 'Redstring — AI-Powered Hiring Operating System',
+  description: 'Automate candidate sourcing, screening, and interview scheduling with Redstring. The hiring OS that helps startups find and hire top talent faster.',
 };
 
 import { Navbar } from "@/components/Navbar";

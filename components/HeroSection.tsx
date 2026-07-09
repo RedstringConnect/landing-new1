@@ -177,7 +177,7 @@ export function HeroSection() {
             alt="The Founding Co"
             width={120}
             height={28}
-            className="h-[22px] w-auto"
+            className="h-[22px] w-auto dark:invert"
             priority={true}
           />
         </div>

@@ -106,7 +106,7 @@ export function Iphone({
         viewBox={`0 0 ${PHONE_WIDTH} ${PHONE_HEIGHT}`}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="absolute inset-0 size-full"
+        className="absolute inset-0 size-full pointer-events-none"
         style={{ transform: "translateZ(0)" }}
       >
         <g mask={(hasMedia || hasChildren) ? "url(#screenPunch)" : undefined}>

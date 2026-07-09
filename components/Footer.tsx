@@ -25,7 +25,7 @@ export function Footer() {
                   alt="The Founding Co"
                   width={100}
                   height={24}
-                  className="h-[18px] w-auto"
+                  className="h-[18px] w-auto dark:invert"
                 />
               </div>
               <a href="https://x.com/redstringhire" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors">
@@ -69,7 +69,7 @@ export function Footer() {
         {/* Middle Section - Built for Founders */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="flex flex-col gap-3">
-            <h2 className="text-[28px] font-medium tracking-tight">Built For Founders</h2>
+            <p className="text-[28px] font-medium tracking-tight">Built For Founders</p>
             <p className="text-foreground/80 max-w-md text-[15px] leading-relaxed">
               A private community where founders exchange ideas, share experiences, and help each other build better companies.<br/>
               Each Application Handpicked by our Founder!

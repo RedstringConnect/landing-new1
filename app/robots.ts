@@ -5,8 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/private/'],
+      disallow: ['/private/', '/playground', '/api/', '/tools/thankyou'],
     },
-    sitemap: 'https://www.redstring.ai/sitemap.xml',
+    sitemap: 'https://www.redstring.co.in/sitemap.xml',
   }
 }

@@ -1,6 +1,18 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const title = params.slug.replace(/-/g, ' ');
+  return {
+    title: `${title} | Playbook | Redstring`,
+    description: `Learn how to scale your hiring process with the ${title} playbook.`,
+    alternates: {
+      canonical: `https://www.redstring.co.in/playbook/${params.slug}`,
+    },
+  };
+}
 
 export default function PlaybookDetailPage({ params }: { params: { slug: string } }) {
   return (

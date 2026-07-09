@@ -73,13 +73,9 @@ function useLiveClock() {
 function NotificationStack({
   visible,
   isDark,
-  restartKey,
-  expandToggleKey,
 }: {
   visible: boolean;
   isDark: boolean;
-  restartKey: number;
-  expandToggleKey: number;
 }) {
   const [visibleCount, setVisibleCount] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -96,13 +92,7 @@ function NotificationStack({
         clearTimeout(t3);
       };
     }
-  }, [visible, restartKey]);
-
-  useEffect(() => {
-    if (expandToggleKey > 0) {
-      setIsHovered((h) => !h);
-    }
-  }, [expandToggleKey]);
+  }, [visible]);
 
   return (
     <motion.div
@@ -119,13 +109,9 @@ function NotificationStack({
           }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           className="relative"
+          onHoverStart={() => visibleCount >= notifications.length && setIsHovered(true)}
+          onHoverEnd={() => setIsHovered(false)}
         >
-          {isHovered && visibleCount > 0 && (
-            <div
-              className="absolute inset-0 z-0"
-              onClick={() => setIsHovered(false)}
-            />
-          )}
           {notifications.map((notif, i) => {
             const isLatest = i === notifications.length - 1;
             const isVisible = visibleCount > i;
@@ -145,7 +131,13 @@ function NotificationStack({
                 animate={
                   isHovered
                     ? { opacity: 1, y: (visibleCount - 1 - i) * 88, scale: 1 }
-                    : { opacity, y: yPos, scale, boxShadow: "0 2px 12px rgba(0,0,0,0.06), inset 0 1.5px 0 rgba(255,255,255,0.15), inset 0 -1.5px 1px rgba(0,0,0,0.08)" }
+                    : {
+                        opacity,
+                        y: yPos,
+                        scale,
+                        boxShadow:
+                          "0 2px 12px rgba(0,0,0,0.06), inset 0 1.5px 0 rgba(255,255,255,0.15), inset 0 -1.5px 1px rgba(0,0,0,0.08)",
+                      }
                 }
                 transition={
                   isHovered
@@ -163,9 +155,12 @@ function NotificationStack({
                   isDark
                     ? `${isHovered ? "border-white/20" : "border-white/[0.08]"}`
                     : `${isHovered ? "border-black/20" : "border-black/[0.06]"} shadow-lg`
-                } ${isTop ? "cursor-pointer hover:brightness-125 hover:ring-1 hover:ring-white/30 hover:ring-inset transition-all" : ""}`}
-                style={{ zIndex: i + 1, backdropFilter: "blur(3px)", WebkitBackdropFilter: "blur(3px)" }}
-                onClick={isTop ? () => setIsHovered((h) => !h) : undefined}
+                } ${isTop ? "hover:brightness-125 hover:ring-1 hover:ring-white/30 hover:ring-inset transition-all" : ""}`}
+                style={{
+                  zIndex: i + 1,
+                  backdropFilter: "blur(3px)",
+                  WebkitBackdropFilter: "blur(3px)",
+                }}
               >
                 <motion.div
                   className="absolute inset-0 rounded-4xl pointer-events-none"
@@ -176,27 +171,29 @@ function NotificationStack({
                       "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 40%, transparent 60%, rgba(255,255,255,0.02) 100%)",
                     ],
                   }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 />
                 <div className="h-full aspect-square rounded-full mr-2 flex items-center justify-center shrink-0 backdrop-blur-md bg-white/10">
-                  <img src="/favicon.png" alt="" className="w-5 h-5 object-contain" />
+                  <img
+                    src="/favicon.png"
+                    alt=""
+                    className="w-5 h-5 object-contain"
+                  />
                 </div>
                 <div
                   className={`flex-1 min-w-0 transition-opacity duration-300 ${!isTop && !isHovered ? "opacity-0" : ""}`}
                 >
-                  <p
-                    className={`text-[11px] sm:text-[12px] font-bold leading-tight ${isDark ? "text-white/95" : "text-black/85"}`}
-                  >
+                  <p className="text-[11px] sm:text-[12px] font-bold leading-tight text-white/95">
                     Redstring
                   </p>
-                  <p
-                    className={`text-[11px] sm:text-[12px] font-semibold leading-snug mt-0.5 ${isDark ? "text-white/85" : "text-black/75"}`}
-                  >
+                  <p className="text-[11px] sm:text-[12px] font-semibold leading-snug mt-0.5 text-white/85">
                     {notif.title}
                   </p>
-                  <p
-                    className={`text-[10px] sm:text-[11px] leading-snug mt-0.5 ${isDark ? "text-white/55" : "text-black/45"}`}
-                  >
+                  <p className="text-[10px] sm:text-[11px] leading-snug mt-0.5 text-white/55">
                     {notif.subtitle}
                   </p>
                 </div>
@@ -212,20 +209,16 @@ function NotificationStack({
 function LockScreen({
   visible,
   isDark,
-  restartKey,
-  expandToggleKey,
 }: {
   visible: boolean;
   isDark: boolean;
-  restartKey: number;
-  expandToggleKey: number;
 }) {
   const clock = useLiveClock();
 
   return (
     <div className="relative w-full h-full overflow-hidden">
       <Image
-        src="/wallpaper.jpg"
+        src="/wallpaper.jpeg"
         alt=""
         fill
         className="object-cover"
@@ -247,7 +240,7 @@ function LockScreen({
               animate={{ filter: "blur(0px)", opacity: 1 }}
               exit={{ filter: "blur(6px)", opacity: 0.5 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="text-[56px] sm:text-[72px] mb-2 font-semibold leading-none tracking-tight tabular-nums text-white"
+              className="text-[56px] sm:text-[170px] mb-2  tracking-wider tabular-nums text-white font-[Tall]"
               style={{ textShadow: "0 2px 20px rgba(0,0,0,0.5)" }}
             >
               {clock.hours}:{clock.minutes}
@@ -268,12 +261,7 @@ function LockScreen({
           </AnimatePresence>
         </motion.div>
 
-        <NotificationStack
-          visible={visible}
-          isDark={isDark}
-          restartKey={restartKey}
-          expandToggleKey={expandToggleKey}
-        />
+        <NotificationStack visible={visible} isDark={isDark} />
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -291,8 +279,6 @@ function LockScreen({
 export function PhoneAnimation() {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [restartKey, setRestartKey] = useState(0);
-  const [expandToggleKey, setExpandToggleKey] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.2 });
   const isDark = resolvedTheme === "dark";
@@ -313,31 +299,11 @@ export function PhoneAnimation() {
             style={{ bottom: "-240px" }}
           >
             <Iphone className="w-full">
-              <LockScreen
-                visible={isInView}
-                isDark={isDark}
-                restartKey={restartKey}
-                expandToggleKey={expandToggleKey}
-              />
+              <LockScreen visible={isInView} isDark={isDark} />
             </Iphone>
           </div>
 
           <div className="absolute z-0 bottom-0 left-1/2 -translate-x-1/2 w-[240px] sm:w-[288px] lg:w-[312px] h-[40px] rounded-full bg-foreground/[0.06] blur-2xl" />
-
-          <button
-            onClick={() => setExpandToggleKey((k) => k + 1)}
-            className="absolute bottom-2 right-9 z-20 w-6 h-6 flex items-center justify-center text-xs rounded-full text-foreground/30 hover:text-foreground/60 hover:bg-foreground/5 transition-colors"
-            title="Toggle expand"
-          >
-            ⇅
-          </button>
-          <button
-            onClick={() => setRestartKey((k) => k + 1)}
-            className="absolute bottom-2 right-2 z-20 w-6 h-6 flex items-center justify-center text-xs rounded-full text-foreground/30 hover:text-foreground/60 hover:bg-foreground/5 transition-colors"
-            title="Restart animation"
-          >
-            ↻
-          </button>
         </>
       )}
     </div>
