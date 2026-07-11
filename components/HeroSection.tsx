@@ -189,7 +189,7 @@ export function HeroSection() {
           style={{ fontVariationSettings: "'wdth' 100" }}
         >
           <span className="mb-0">The Hiring OS for</span>
-          <LineShadowText shadowColor={mounted && resolvedTheme === "dark" ? "#fff" : "#000"} className="text-primary inline-block text-center md:text-left w-full max-w-[400px] md:w-[320px] lg:w-[360px] whitespace-nowrap after:left-1/2 after:-translate-x-1/2 md:after:left-[0.04em] md:after:translate-x-0">
+          <LineShadowText shadowColor={mounted && resolvedTheme === "dark" ? "#fff" : "#000"} className="text-primary inline-block text-center md:text-left w-full max-w-[400px] md:w-[320px] lg:w-[360px] whitespace-nowrap md:ml-3 after:left-1/2 after:-translate-x-1/2 md:after:left-[0.04em] md:after:translate-x-0">
             {text || '\u200B'}
           </LineShadowText>
         </h1>
