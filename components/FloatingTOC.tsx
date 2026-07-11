@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useSpring, Variants, useMotionValueEvent } from "motion/react";
-import { Menu, X } from "lucide-react";
 
 interface Heading {
   level: number;
@@ -169,33 +168,18 @@ export function FloatingTOC({ headings }: FloatingTOCProps) {
             }}
             aria-label="Toggle Table of Contents"
           >
-            <AnimatePresence mode="popLayout">
-              {isExpanded ? (
-                <motion.div 
-                  key="close" 
-                  layoutId="toc-toggle-icon"
-                  initial={{ opacity: 0, scale: 0.8, rotate: -90 }} 
-                  animate={{ opacity: 1, scale: 1, rotate: 0 }} 
-                  exit={{ opacity: 0, scale: 0.8, rotate: 90 }} 
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  <X size={18} />
-                </motion.div>
-              ) : (
-                <motion.div 
-                  key="menu" 
-                  layoutId="toc-toggle-icon"
-                  initial={{ opacity: 0, scale: 0.8, rotate: 90 }} 
-                  animate={{ opacity: 1, scale: 1, rotate: 0 }} 
-                  exit={{ opacity: 0, scale: 0.8, rotate: -90 }} 
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  <Menu size={18} />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <motion.path
+                d={isExpanded ? "M18 6L6 18" : "M4 8h16"}
+                animate={{ d: isExpanded ? "M18 6L6 18" : "M4 8h16" }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              />
+              <motion.path
+                d={isExpanded ? "M6 6l12 12" : "M4 16h16"}
+                animate={{ d: isExpanded ? "M6 6l12 12" : "M4 16h16" }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              />
+            </svg>
           </button>
         </div>
 

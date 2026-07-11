@@ -57,11 +57,9 @@ function FeatureCardImage({ feature, ditherColor }: { feature: FeaturesType, dit
   }, []);
 
   return (
-    <div ref={containerRef} className="relative w-full aspect-4/3 overflow-hidden rounded-t-[28px] rounded-b-[24px] bg-secondary shrink-0 z-10">
-      {/* Original Image */}
+    <div ref={containerRef} className="relative w-full h-[160px] md:h-auto md:aspect-4/3 overflow-hidden rounded-t-[16px] md:rounded-t-[28px] rounded-b-[12px] md:rounded-b-[24px] bg-secondary shrink-0 z-10">
       <Image src={feature.image} alt={feature.title} width={500} height={500} className="absolute inset-0 w-full h-full object-cover" />
       
-      {/* Dithering Overlay */}
       <div className="absolute inset-0 transition-transform duration-1200 ease-out z-10">
         {dimensions.width > 0 && dimensions.height > 0 && (
           <ImageDithering
@@ -80,7 +78,7 @@ function FeatureCardImage({ feature, ditherColor }: { feature: FeaturesType, dit
           />
         )}
       </div>
-      <div className="absolute inset-0 bg-linear-to-t  translate-y-12 from-card via-transparent to-transparent opacity-80 pointer-events-none z-20" />
+      <div className="absolute inset-0 bg-linear-to-t translate-y-12 from-card via-transparent to-transparent opacity-80 pointer-events-none z-20" />
     </div>
   );
 }
@@ -97,35 +95,33 @@ export function WhyRedstring() {
   const ditherColor = mounted && resolvedTheme === "dark" ? "#ffffff" : "#000000";
 
   return (
-    <section className="py-[120px] flex flex-col items-center" id="about">
+    <section className="py-[48px] md:py-[120px] flex flex-col items-center" id="about">
       <h2
-        className="font-[540] font-denton text-foreground text-[36px] md:text-[44px] lg:text-[48px] text-center mb-[64px]"
+        className="font-[540] font-denton text-foreground text-[24px] md:text-[44px] lg:text-[48px] text-center mb-[28px] md:mb-[64px]"
         style={{ fontVariationSettings: "'wdth' 100" }}
       >
         Why Redstring
       </h2>
 
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-8 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]">
+      <div className="max-w-[1280px] mx-auto px-6 md:px-6 lg:px-8 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-[24px]">
         {features.map((feature, i) => (
           <div
             key={i}
-            className="group relative bg-card border border-border rounded-[32px]  transition-all duration-500 flex flex-col overflow-hidden shadow-sm hover:shadow-lg p-1"
+            className="group relative bg-card border border-border rounded-[16px] md:rounded-[32px] transition-all duration-500 flex flex-col overflow-hidden shadow-sm hover:shadow-lg p-1"
           >
-
-            {/* ImageDithering Full Width Square Header */}
-            <Suspense fallback={<div className="w-full aspect-4/3 bg-muted animate-pulse  shrink-0 z-10 " />}>
+            <Suspense fallback={<div className="w-full h-[160px] md:h-auto md:aspect-4/3 bg-muted animate-pulse shrink-0 z-10" />}>
               {mounted && <FeatureCardImage feature={feature} ditherColor={ditherColor} />}
             </Suspense>
 
-            <div className="relative z-10 flex flex-col gap-2 pb-8 pt-4 px-2 bg-card">
+            <div className="relative z-10 flex flex-col gap-1 md:gap-2 pb-4 md:pb-8 pt-3 md:pt-4 px-3 md:px-2 bg-card">
               <h3
-                className="text-foreground text-[22px] font-semibold tracking-tight"
+                className="text-foreground text-[15px] md:text-[22px] font-semibold tracking-tight"
                 style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
               >
                 {feature.title}
               </h3>
               <p
-                className="text-[15px] text-muted-foreground leading-relaxed"
+                className="text-[13px] md:text-[15px] text-muted-foreground leading-relaxed"
                 style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}
               >
                 {feature.description}

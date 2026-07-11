@@ -17,9 +17,10 @@ export type DotFlowProps = {
         repeatCount?: number;
     }[];
     href?: string;
+    className?: string;
 };
 
-export const DotFlow = ({ items, href }: DotFlowProps) => {
+export const DotFlow = ({ items, href, className }: DotFlowProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
     const [index, setIndex] = useState(0);
@@ -92,7 +93,7 @@ export const DotFlow = ({ items, href }: DotFlowProps) => {
         </>
     );
 
-    const cls = "flex items-center gap-4 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-4 transition-colors cursor-pointer shadow-lg hover:shadow-xl hover:-translate-y-0.5 duration-300";
+    const cls = `flex items-center gap-4 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2.5 text-[13px] md:px-6 md:py-4 md:text-[16px] transition-colors cursor-pointer shadow-lg hover:shadow-xl hover:-translate-y-0.5 duration-300 ${className ?? ""}`;
 
     if (href) {
         const isExternal = href.startsWith('http');

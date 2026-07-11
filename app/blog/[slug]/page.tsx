@@ -78,10 +78,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <div className="pointer-events-none absolute inset-x-0 top-16 h-px w-full bg-border z-10" />
       <Navbar />
       {/* Force hot reload */}
-      <main className="flex-1 w-full max-w-6xl mx-auto py-32 px-6 relative">
-        <div className="mb-12 w-full mx-auto text-center">
-          <h1 className="text-3xl md:text-5xl font-denton font-medium mb-6">{blog.frontmatter.title}</h1>
-          <div className="flex items-center justify-center space-x-4 text-muted-foreground mb-6">
+      <main className="flex-1 w-full max-w-6xl mx-auto pt-24 md:pt-32 pb-16 md:pb-32 px-6 relative">
+        <div className="mb-8 md:mb-12 w-full mx-auto text-center">
+          <h1 className="text-2xl md:text-5xl font-denton font-medium mb-4 md:mb-6">{blog.frontmatter.title}</h1>
+          <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4 text-muted-foreground mb-4 md:mb-6 text-[13px] md:text-base">
             <span>{new Date(blog.frontmatter.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
             <span>•</span>
             <span>{blog.frontmatter.readTime}</span>
@@ -100,7 +100,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           )}
           
           {blog.frontmatter.imageUrl && (
-            <div className="relative w-full h-[300px] md:h-[500px] mt-8 rounded-3xl overflow-hidden shadow-sm border border-border">
+            <div className="relative w-full aspect-video md:h-[500px] mt-8 rounded-3xl overflow-hidden shadow-sm border border-border">
               <Image 
                 src={blog.frontmatter.imageUrl} 
                 alt={blog.frontmatter.title} 
@@ -156,8 +156,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {recommendedBlogs.length > 0 && (
         <div className="w-full border-t border-border bg-background">
-          <div className="max-w-6xl mx-auto px-6 py-24">
-            <h2 className="text-3xl font-denton font-medium mb-8">Read next</h2>
+          <div className="max-w-6xl mx-auto px-6 py-16 md:py-24">
+            <h2 className="text-2xl md:text-3xl font-denton font-medium mb-6 md:mb-8">Read next</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {recommendedBlogs.map((b) => (
                 <Link href={`/blog/${b.slug}`} key={b.slug} className="group flex flex-col bg-card rounded-2xl border border-border overflow-hidden hover:shadow-lg transition-all duration-300">

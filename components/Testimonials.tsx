@@ -62,7 +62,7 @@ export function TestimonialCard({ testimonial }: { testimonial: (typeof testimon
   return (
     <div className="flex-shrink-0 w-full px-2">
       {/* Phone Frame */}
-      <div className="rounded-[24px] border-[6px] md:border-[8px] border-slate-900 overflow-hidden shadow-2xl transition-all flex flex-col h-[480px] bg-[#efeae2] relative">
+      <div className="rounded-[16px] sm:rounded-[24px] border-[4px] sm:border-[6px] md:border-[8px] border-slate-900 overflow-hidden shadow-2xl transition-all flex flex-col h-[380px] sm:h-[480px] bg-[#efeae2] relative">
         
         {/* Top Status Bar (fake notch/status) */}
         <div className="h-6 w-full bg-[#075e54] flex justify-between items-center px-4 z-20">
@@ -222,7 +222,7 @@ function ScrollColumn({
 
   return (
     <div 
-      className="overflow-hidden h-[700px] w-full max-w-[280px] sm:max-w-[380px] relative"
+      className="overflow-hidden h-[500px] sm:h-[700px] w-full max-w-[280px] sm:max-w-[380px] relative"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -253,16 +253,16 @@ export function Testimonials() {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <section ref={sectionRef} className="relative py-[120px] overflow-hidden">
-      <div className="container mx-auto px-6 lg:px-8">
+    <section ref={sectionRef} className="relative py-[60px] md:py-[120px] overflow-hidden">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <motion.div
           variants={fadeInUp}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="mx-auto max-w-2xl text-center mb-12"
+          className="mx-auto max-w-2xl text-center mb-6 md:mb-12"
         >
           <h2
-            className="text-[36px] md:text-[44px] lg:text-[48px] font-[540] font-denton text-foreground leading-[1.1]"
+            className="text-[28px] md:text-[44px] lg:text-[48px] font-[540] font-denton text-foreground leading-[1.1]"
             style={{ fontVariationSettings: "'wdth' 100" }}
           >
             Why people love Redstring
@@ -276,9 +276,13 @@ export function Testimonials() {
           <div className="flex justify-center items-start gap-3 sm:gap-4 max-w-5xl mx-auto">
               <ScrollColumn items={col1} direction="down" duration={30000} />
 
-              <ScrollColumn items={col2} direction="up" duration={30000} />
+              <div className="hidden sm:block">
+                <ScrollColumn items={col2} direction="up" duration={30000} />
+              </div>
 
-              <ScrollColumn items={col3} direction="down" duration={30000} />
+              <div className="hidden sm:block">
+                <ScrollColumn items={col3} direction="down" duration={30000} />
+              </div>
           </div>
         </div>
       </div>

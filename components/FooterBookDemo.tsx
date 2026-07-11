@@ -23,7 +23,7 @@ export function FooterBookDemo() {
       data-cal-namespace="loopx-demo"
       data-cal-link="redstring/loopx-demo"
       data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"auto"}'
-      className="border border-border rounded-lg px-8 py-2.5 flex items-center gap-3 hover:bg-muted transition-colors font-medium text-lg cursor-pointer"
+      className="border border-border rounded-lg px-5 md:px-8 py-2 md:py-2.5 flex items-center gap-3 hover:bg-muted transition-colors font-medium text-[15px] md:text-lg cursor-pointer"
     >
       Book A demo 
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

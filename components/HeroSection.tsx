@@ -141,7 +141,7 @@ export function HeroSection() {
 
   return (
     <section 
-      className="relative pt-[240px] flex flex-col items-center overflow-x-hidden" 
+      className="relative h-dvh md:h-auto md:min-h-0 pt-0 md:pt-[240px] flex flex-col items-center overflow-x-hidden" 
       id="home"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -167,42 +167,44 @@ export function HeroSection() {
       <div className="pointer-events-none absolute inset-x-0 top-16 h-px w-full bg-border z-10" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px w-full bg-border z-10" />
 
-      <div className="relative z-10 flex flex-col items-center gap-[12px] mb-[24px]">
-        <div className="flex items-center gap-2.5 px-4 py-2">
-          <span className="text-[18px] text-muted-foreground" style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}>
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center">
+        <div className="flex items-center gap-2.5 px-4 py-2 mb-[12px] md:mb-[16px]">
+          <span className="text-[14px] md:text-[18px] text-muted-foreground" style={{ fontFeatureSettings: "'case', 'cv01', 'cv08', 'cv09', 'cv11', 'cv13'" }}>
             backed by
           </span>
-          <Image
-            src="/logos/the founding co.svg"
-            alt="The Founding Co"
-            width={120}
-            height={28}
-            className="h-[22px] w-auto dark:invert"
-            priority={true}
-          />
+          <a href="https://www.thefounding.co/" target="_blank" rel="noopener noreferrer">
+            <Image
+              src="/logos/the founding co.svg"
+              alt="The Founding Co"
+              width={120}
+              height={28}
+              className="h-[18px] md:h-[22px] w-auto dark:invert"
+              priority={true}
+            />
+          </a>
+        </div>
+
+        <h1
+          className="relative z-10 font-[540] font-denton text-foreground text-[28px] sm:text-[48px] md:text-[64px] lg:text-[72px] leading-[1.1] flex flex-col md:flex-row items-center justify-center gap-2 md:gap-0 md:whitespace-nowrap overflow-visible px-4"
+          style={{ fontVariationSettings: "'wdth' 100" }}
+        >
+          <span className="mb-0">The Hiring OS for</span>
+          <LineShadowText shadowColor={mounted && resolvedTheme === "dark" ? "#fff" : "#000"} className="text-primary inline-block text-center md:text-left w-full max-w-[400px] md:w-[320px] lg:w-[360px] whitespace-nowrap after:left-1/2 after:-translate-x-1/2 md:after:left-[0.04em] md:after:translate-x-0">
+            {text || '\u200B'}
+          </LineShadowText>
+        </h1>
+
+        <p className="mt-4 md:mt-6 text-[15px] md:text-[20px] text-muted-foreground text-center max-w-[700px] leading-relaxed px-6 font-normal text-balance">
+         Building your hiring brain with human intelligence 
+        </p>
+
+        <div className="mt-[28px] md:mt-[48px] flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 w-full px-6">
+          <DotFlow items={ctaItems} href="https://loopx.redstring.co.in" className="w-fit sm:w-auto justify-center" />
+          <BookDemoButton variant="secondary" size="md" className="w-fit sm:w-auto" />
         </div>
       </div>
 
-      <h1
-        className="relative z-10 font-[540] font-denton text-foreground text-[32px] sm:text-[48px] md:text-[64px] lg:text-[72px] leading-[1.1] flex items-center justify-center whitespace-nowrap overflow-visible px-4"
-        style={{ fontVariationSettings: "'wdth' 100" }}
-      >
-        <span>The Hiring OS for&nbsp;</span>
-        <LineShadowText shadowColor={mounted && resolvedTheme === "dark" ? "#fff" : "#000"} className="text-primary inline-block text-left w-[160px] sm:w-[240px] md:w-[320px] lg:w-[360px]">
-          {text}
-        </LineShadowText>
-      </h1>
-
-      <p className="relative z-10 mt-6 text-[18px] md:text-[20px] text-muted-foreground text-center max-w-[700px] leading-relaxed px-6 font-normal text-balance">
-       Building your hiring brain with human intelligence 
-      </p>
-
-      <div className="relative z-10 mt-[48px] flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-6">
-        <DotFlow items={ctaItems} href="https://loopx.redstring.co.in" />
-        <BookDemoButton variant="secondary" size="md" className="w-full sm:w-auto" />
-      </div>
-
-      <div className="w-full mt-12 relative z-10 px-4 md:px-16">
+      <div className="w-full shrink-0 mt-auto relative z-10 px-4 md:px-16">
         <CompanyMarquee />
       </div>
     </section>

@@ -97,7 +97,7 @@ function ThankYouContent() {
     <div className="flex flex-col w-full min-h-screen">
       
       {/* Hero Result Section */}
-      <section className="relative min-h-screen pt-[120px] pb-[60px] md:pt-[160px] md:pb-[100px] flex flex-col items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen pt-[40px] pb-[60px] md:pt-[160px] md:pb-[100px] flex flex-col items-center justify-center overflow-hidden">
         
         {/* Background Dithering Effect */}
         <Suspense fallback={<div className="absolute inset-x-4 top-16 bottom-0 md:inset-x-16 md:inset-be-40 bg-muted/20 rounded-xl" />}>

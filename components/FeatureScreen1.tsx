@@ -93,7 +93,7 @@ export function FeatureScreen1() {
       className="dark w-full overflow-x-auto md:overflow-x-visible scrollbar-none pointer-events-none select-none flex justify-start"
     >
       <div
-        className="content-stretch flex flex-col items-start overflow-visible relative min-w-[920px] origin-top-left scale-[0.65] xs:scale-[0.75] sm:scale-90 md:scale-95 lg:scale-100"
+        className="content-stretch flex flex-col items-start overflow-visible relative min-w-[920px] origin-top-left scale-[0.42] xs:scale-[0.5] sm:scale-75 md:scale-95 lg:scale-100 mt-0 md:mt-0"
         data-name="Mockup wrapper"
       >
         <div

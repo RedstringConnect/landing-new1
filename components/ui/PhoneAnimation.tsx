@@ -109,7 +109,9 @@ function NotificationStack({
           }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           className="relative"
-          onHoverStart={() => visibleCount >= notifications.length && setIsHovered(true)}
+          onHoverStart={() =>
+            visibleCount >= notifications.length && setIsHovered(true)
+          }
           onHoverEnd={() => setIsHovered(false)}
         >
           {notifications.map((notif, i) => {
@@ -226,12 +228,12 @@ function LockScreen({
       />
       <div className="absolute inset-0 bg-black/30" />
 
-      <div className="relative z-10 h-full flex flex-col items-center pt-6 px-4 sm:px-5">
+      <div className="relative z-10 h-full flex flex-col items-center pt-6 px-5">
         <motion.div
           initial={{ opacity: 0 }}
           animate={visible ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center mt-[25%] mb-[10%]"
+          className="text-center mt-[25%] mb-[5%]"
         >
           <AnimatePresence mode="wait">
             <motion.p
@@ -240,7 +242,7 @@ function LockScreen({
               animate={{ filter: "blur(0px)", opacity: 1 }}
               exit={{ filter: "blur(6px)", opacity: 0.5 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="text-[56px] sm:text-[170px] mb-2  tracking-wider tabular-nums text-white font-[Tall]"
+              className="text-[120px] md:text-[170px] tracking-wider tabular-nums text-white font-[Tall] "
               style={{ textShadow: "0 2px 20px rgba(0,0,0,0.5)" }}
             >
               {clock.hours}:{clock.minutes}
@@ -253,7 +255,7 @@ function LockScreen({
               animate={{ filter: "blur(0px)", opacity: 1 }}
               exit={{ filter: "blur(4px)", opacity: 0.5 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="text-[12px] sm:text-[13px] font-semibold mt-1 text-white/80"
+              className="text-[13px] font-semibold text-white/80"
               style={{ textShadow: "0 1px 8px rgba(0,0,0,0.6)" }}
             >
               {clock.date}
@@ -290,14 +292,11 @@ export function PhoneAnimation() {
   return (
     <div
       ref={containerRef}
-      className="w-full h-[400px] sm:h-[480px] lg:h-[600px] relative overflow-hidden border-b border-foreground/20"
+      className="w-full h-[450px] sm:h-[480px] lg:h-[600px] relative overflow-hidden border-b border-foreground/20"
     >
       {mounted && (
         <>
-          <div
-            className="absolute z-10 left-1/2 -translate-x-1/2 w-[300px] sm:w-[350px] lg:w-[400px]"
-            style={{ bottom: "-240px" }}
-          >
+          <div className="absolute z-10 left-1/2 -translate-x-1/2 w-[300px] sm:w-[350px] lg:w-[400px] bottom-[-200px] md:bottom-[-240px]">
             <Iphone className="w-full">
               <LockScreen visible={isInView} isDark={isDark} />
             </Iphone>

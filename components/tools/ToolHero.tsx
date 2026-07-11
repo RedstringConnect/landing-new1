@@ -405,7 +405,7 @@ export function ToolHero({ slug, meta, form }: ToolHeroProps) {
   const formMaxWidth = maxColumns >= 3 ? "max-w-[900px]" : maxColumns === 2 ? "max-w-[720px]" : "max-w-[560px]";
 
   return (
-    <section className="relative min-h-[900px] md:min-h-[950px] pt-[100px] md:pt-[120px] pb-[80px] flex flex-col items-center justify-center overflow-x-clip">
+    <section className="relative min-h-[900px] md:min-h-[950px] pt-[40px] md:pt-[120px] pb-[80px] flex flex-col items-center justify-center overflow-x-clip">
       <Suspense fallback={<div className="absolute inset-x-4 top-16 bottom-0 md:inset-x-16 md:inset-be-40 bg-muted/20 rounded-xl" />}>
         <div className="absolute inset-x-4 top-16 bottom-0 md:inset-bs-16 md:inset-x-16 md:inset-be-0 z-0 pointer-events-none opacity-[0.08] dark:opacity-[0.15] overflow-hidden">
           {mounted && <Dithering colorBack="#00000000" colorFront={ditherColor} shape="simplex" type="4x4" speed={0.15} className="size-full" minPixelRatio={1} />}
